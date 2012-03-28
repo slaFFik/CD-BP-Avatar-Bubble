@@ -42,18 +42,9 @@ class CD_AB_ADMIN_PAGE {
         wp_enqueue_script('wp-lists');
         wp_enqueue_script('postbox');
 
-        if (is_multisite()){
-            $position = 'normal';
-            $priority = 'low';
-        }else{
-            $position = 'side';
-            $priority = 'core';
-        }
-
         // sidebar
-        add_meta_box('cd-ab-admin-privacy', __('Privacy Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_privacy'), $this->pagehook, $position, $priority );
-        add_meta_box('cd-ab-admin-b-color', __('Border Color', 'cd_ab'), array(&$this, 'on_cd_ab_admin_b_color'), $this->pagehook, $position, $priority);
-        add_meta_box('cd-ab-admin-promo', __('Need Help / Custom Work?', 'cd_ab'), array(&$this, 'on_cd_ab_admin_promo'), $this->pagehook, $position, $priority);
+        add_meta_box('cd-ab-admin-privacy', __('Privacy Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_privacy'), $this->pagehook, 'side', 'low' );
+        add_meta_box('cd-ab-admin-b-color', __('Border Color', 'cd_ab'), array(&$this, 'on_cd_ab_admin_b_color'), $this->pagehook, 'side', 'low');
         // main content - normal
         add_meta_box('cd-ab-admin-users', __('Users Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_users'), $this->pagehook, 'normal', 'core');
         add_meta_box('cd-ab-admin-groups', __('Groups Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
@@ -115,12 +106,19 @@ class CD_AB_ADMIN_PAGE {
                     wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false ); ?>
                 
                     <div id="poststuff" class="metabox-holder<?php echo (2 == $screen_layout_columns) ? ' has-right-sidebar' : ''; ?>">
-                        <div id="side-info-column" class="inner-sidebar">
-                            <?php do_meta_boxes($this->pagehook, 'side', $cd_ab); ?>
-                        </div>
+                        <?php if ( !is_multisite() ){ ?>
+                            <div id="side-info-column" class="inner-sidebar">
+                                <?php do_meta_boxes($this->pagehook, 'side', $cd_ab); ?>
+                            </div>
+                        <?php } ?>
                         <div id="post-body" class="has-sidebar">
                             <div id="post-body-content" class="has-sidebar-content">
-                                <?php do_meta_boxes($this->pagehook, 'normal', $cd_ab); ?>
+                                <?php
+                                do_meta_boxes($this->pagehook, 'normal', $cd_ab); 
+                                if (is_multisite()){
+                                    do_meta_boxes($this->pagehook, 'side', $cd_ab);
+                                }
+                                ?>
                                 <p>
                                     <input type="submit" value="<?php _e('Save Selected Fields', 'cd_ab') ?>" class="button-primary" name="saveData"/>    
                                 </p>
@@ -143,15 +141,6 @@ class CD_AB_ADMIN_PAGE {
     <?php
     }
 
-    function on_cd_ab_admin_promo($cd_ab) {
-        echo '<p>If you:</p>
-                <ul style="list-style:disc;margin-left:15px;">
-                    <li>have a site/plugin idea and want to implement it</li>
-                    <li>want to modify this plugin to your needs and ready to sponsor this</li>
-                </ul>
-                <p>feel free to contact slaFFik via <a href="skype:slaffik_ua?chat">skype:slaFFik_ua</a></p>';
-    }
-    
     function on_cd_ab_admin_groups($cd_ab) { 
         do_action( 'cd_ab_admin_groups_before', $cd_ab ); ?>
         <table class="widefat link-group">
