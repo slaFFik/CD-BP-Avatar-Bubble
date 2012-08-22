@@ -40,26 +40,30 @@ function cd_ab_add_css() {
     if ( $cd_ab['access'] == 'admin' && !is_super_admin() )
         return false;
 
-    switch ($cd_ab['color']){
-        case 'blue':
-            $bubbleUrl = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-blue.css';
-            $bubbleFile = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-blue.css';
-            break;
+    $url  = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/';
+    $path = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/';
+
+    switch($cd_ab['color']){
         case 'red':
-            $bubbleUrl = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-red.css';
-            $bubbleFile = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-red.css';
+            $bubbleUrl  = $url .$cd_ab['borders'].'/bubble-red.css';
+            $bubbleFile = $path.$cd_ab['borders'].'/bubble-red.css';
             break;
         case 'black':
-            $bubbleUrl = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-black.css';
-            $bubbleFile = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-black.css';
+            $bubbleUrl  = $url .$cd_ab['borders'].'/bubble-black.css';
+            $bubbleFile = $path.$cd_ab['borders'].'/bubble-black.css';
             break;
         case 'grey':
-            $bubbleUrl = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-grey.css';
-            $bubbleFile = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-grey.css';
+            $bubbleUrl  = $url .$cd_ab['borders'].'/bubble-grey.css';
+            $bubbleFile = $path.$cd_ab['borders'].'/bubble-grey.css';
             break;
         case 'green':
-            $bubbleUrl = WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-green.css';
-            $bubbleFile = WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/_inc/css/'.$cd_ab['borders'].'/bubble-green.css';
+            $bubbleUrl  = $url .$cd_ab['borders'].'/bubble-green.css';
+            $bubbleFile = $path.$cd_ab['borders'].'/bubble-green.css';
+            break;
+        case 'blue':
+        default:
+            $bubbleUrl  = $url .$cd_ab['borders'].'/bubble-blue.css';
+            $bubbleFile = $path.$cd_ab['borders'].'/bubble-blue.css';
             break;
     }
 

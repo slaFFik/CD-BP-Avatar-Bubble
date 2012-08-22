@@ -21,13 +21,12 @@ class CD_AB_ADMIN_PAGE {
     }
     
     function on_screen_layout_columns( $columns, $screen ) {
-        if ( $screen == $this->pagehook ) {
-            if (is_multisite()){
-                $columns[ $this->pagehook ] = 1;
-            }else{
-                $columns[ $this->pagehook ] = 2;
-            }
+        $columns[$screen] = 2;
+        
+        if ( isset($this->pagehook) && !empty($this->pagehook) && $screen == $this->pagehook && is_multisite()) {
+            $columns[$this->pagehook] = 1;
         }
+
         return $columns;
     }
 	
@@ -46,9 +45,9 @@ class CD_AB_ADMIN_PAGE {
         add_meta_box('cd-ab-admin-privacy', __('Privacy Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_privacy'), $this->pagehook, 'side', 'low' );
         add_meta_box('cd-ab-admin-b-color', __('Border Color', 'cd_ab'), array(&$this, 'on_cd_ab_admin_b_color'), $this->pagehook, 'side', 'low');
         // main content - normal
-        add_meta_box('cd-ab-admin-users', __('Users Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_users'), $this->pagehook, 'normal', 'core');
-        add_meta_box('cd-ab-admin-groups', __('Groups Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
-        add_meta_box('cd-ab-admin-extra', __('Extra Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_extra'), $this->pagehook, 'normal', 'core');
+        add_meta_box('cd-ab-admin-users',   __('Users Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_users'), $this->pagehook, 'normal', 'core');
+        add_meta_box('cd-ab-admin-groups',  __('Groups Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
+        add_meta_box('cd-ab-admin-extra',   __('Extra Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_extra'), $this->pagehook, 'normal', 'core');
     }
     
     //executed to show the plugins complete admin page
@@ -70,21 +69,21 @@ class CD_AB_ADMIN_PAGE {
         
             <?php 
             if ( isset($_POST['saveData']) ) {
-                $cd_ab = $_POST['cd_ab_display'];
-                $cd_ab['color'] = $_POST['cd_ab_color'];
-                $cd_ab['borders'] = $_POST['cd_ab_borders'];
+                $cd_ab             = $_POST['cd_ab_display'];
+                $cd_ab['color']    = $_POST['cd_ab_color'];
+                $cd_ab['borders']  = $_POST['cd_ab_borders'];
                 
-                $cd_ab['access'] = $_POST['cd_ab_access'];
+                $cd_ab['access']   = $_POST['cd_ab_access'];
                 
                 $cd_ab['messages'] = $_POST['cd_ab_messages'];
-                $cd_ab['friend'] = $_POST['cd_ab_friend'];
+                $cd_ab['friend']   = $_POST['cd_ab_friend'];
                 
-                $cd_ab['action'] = $_POST['cd_ab_action'];
+                $cd_ab['action']   = $_POST['cd_ab_action'];
                 
                 $cd_ab['groups']['status'] = $_POST['cd_ab_groups'];
-                $cd_ab['groups']['join'] = isset($_POST['cd_ab_groups_join'])?$_POST['cd_ab_groups_join']:'off';
-                $cd_ab['groups']['type'] = $_POST['cd_ab_groups_type'];
-                $cd_ab['groups']['data'] = $_POST['cd_ab_groups_data'];
+                $cd_ab['groups']['join']   = isset($_POST['cd_ab_groups_join'])?$_POST['cd_ab_groups_join']:'off';
+                $cd_ab['groups']['type']   = $_POST['cd_ab_groups_type'];
+                $cd_ab['groups']['data']   = $_POST['cd_ab_groups_data'];
                 
                 if ( is_numeric( $_POST['cd_ab_delay'] ) ) {
                     $cd_ab['delay'] = $_POST['cd_ab_delay'];

@@ -2,8 +2,8 @@
 Contributors: slaFFik, valant
 Tags: buddypress, profile, ajax, avatar, admin, privacy
 Requires at least: WordPress 3.1 and BuddyPress 1.2.x
-Tested up to: WordPress 3.2.1 and BuddyPress 1.5.5
-Stable tag: 2.3.1
+Tested up to: WordPress 3.4.1 and BuddyPress 1.6.1
+Stable tag: 2.4
 
 After moving your mouse pointer on a BuddyPress user avatar (or clicking) you will see a bubble with the defined by admin information about this user.
 
@@ -49,6 +49,11 @@ Try to reinstall the plugin too.
 2. On a production site
 
 == Changelog ==
+
+= 2.4 (22.08.2012) =
+* Testing compatibility with BuddyPress 1.6.x
+* Fixed some notices
+* Fixed datetime field errors
 
 = 2.3.1 (28.03.2012) =
 * Admin area fixes (better compatibility with WordPress Multisite)

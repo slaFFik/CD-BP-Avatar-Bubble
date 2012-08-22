@@ -3,32 +3,32 @@
 Plugin Name: CD BuddyPress Avatar Bubble
 Plugin URI: http://cosydale.com/plugin-cd-avatar-bubble.html
 Description: After moving your mouse pointer on a BuddyPress user avatar you will see a bubble with the defined by admin information about this user.
-Version: 2.3.1
+Version: 2.4
 Author: slaFFik
 Author URI: http://cosydale.com/
 Network: true
 */
-define ('CD_AB_VERSION', '2.3.1');
+define ('CD_AB_VERSION', '2.4');
 define ('CD_AB_IMAGE_URI', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/images');
 
 register_activation_hook( __FILE__, 'cd_ab_activation');
 register_deactivation_hook( __FILE__, 'cd_ab_deactivation');
 function cd_ab_activation() {
-    $cd_ab['color'] = 'blue';
-    $cd_ab['borders'] = 'images';
+    $cd_ab['color']    = 'blue';
+    $cd_ab['borders']  = 'images';
     
-    $cd_ab['access'] = 'all';
+    $cd_ab['access']   = 'all';
     
     $cd_ab['messages'] = 'yes';
-    $cd_ab['friend'] = 'no';
+    $cd_ab['friend']   = 'no';
     
-    $cd_ab['action'] = 'click';
-    $cd_ab['delay'] = '0';
+    $cd_ab['action']   = 'click';
+    $cd_ab['delay']    = '0';
     
     $cd_ab['groups']['status'] = 'off';
-    $cd_ab['groups']['join'] = 'off';
-    $cd_ab['groups']['type'] = array('public');
-    $cd_ab['groups']['data'] = array('name', 'short_desc', 'members', 'forum_stat');
+    $cd_ab['groups']['join']   = 'off';
+    $cd_ab['groups']['type']   = array('public');
+    $cd_ab['groups']['data']   = array('name', 'short_desc', 'members', 'forum_stat');
     
     add_option('cd_ab', $cd_ab, '', 'yes');
 }
@@ -262,18 +262,20 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
     }else{
         echo $cd_ab['delay'] . '|~|';
     }
-    $i = 1;
+    
+    $i       = 1;
     $action  = 'false';
-    $output  = '';
-    $mention = $message = '';
-    $link   = '';
+    $output  = $mention = $message = $profile = $link = '';
+
     do_action('cd_ab_before_default');
+    
     if ( $cd_ab['messages'] == 'yes') {
         $i++;
 
+        $profile .= '<strong><a href="'. bp_core_get_user_domain( $ID, false, false ) .'" title="'. __('Go to profile page',  'cd_ab') .'">#</a></strong>';
+        
         if ( $cd_ab['action'] == 'click') {
             $action = 'true';
-            $profile = '<strong><a href="'. bp_core_get_user_domain( $ID, false, false ) .'" title="'. __('Go to profile page',  'cd_ab') .'">#</a></strong>';
         }
     
         if ( is_user_logged_in() ) {
@@ -311,12 +313,21 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
         if ( !empty($field_data['name']) && is_numeric( $field_id ) ) {
             $field_value = xprofile_get_field_data( $field_id, $ID );
             if ( $field_value != null ) {
-                if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox') $field_value = bp_unserialize_profile_field ( $field_value );
-                if ( $field_data['type'] == 'datebox' && $field_value != null ) $field_value = bp_format_time( bp_unserialize_profile_field ( $field_value), true );
-                if ( $i != 1 ) $class = ' style="padding-top:6px;"';
+                if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox') 
+                    $field_value = bp_unserialize_profile_field ( $field_value );
+                if ( $field_data['type'] == 'datebox' && $field_value != null ){
+                    if(strpos($field_value, '-')){
+                        $field_value = bp_format_time( strtotime($field_value), true );
+                    }else{
+                        $field_value = bp_format_time( bp_unserialize_profile_field ( $field_value), true );
+                    }
+                }
+                if ( $i != 1 ) 
+                    $class = ' style="padding-top:6px;"';
                 
                 if ( isset($field_data['link']) && $field_data['link'] == 'yes') {
-                    if (is_array($field_value)) $field_value = implode(',', $field_value);
+                    if (is_array($field_value)) 
+                        $field_value = implode(',', $field_value);
                     $field_link = xprofile_filter_link_profile_data( $field_value, $field_data['type'] );
                     $field_link = apply_filters('cd_ab_field_link', $field_link, $ID, $field_id, $field_data['type'], $field_value );
                 }else{
@@ -341,12 +352,15 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
 
 // for debug
 if(!function_exists('print_var')) {
-    function print_var($var){
+    function print_var($var, $die = false){
         echo '<pre>';
         if ( !empty($var))
             print_r($var);
         else
             var_dump($var);
         echo '</pre>';
+
+        if($die)
+            die;
     }
 }
