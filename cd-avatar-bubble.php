@@ -8,6 +8,7 @@ Author: slaFFik
 Author URI: http://cosydale.com/
 Network: true
 */
+
 define ('CD_AB_VERSION', '2.4');
 define ('CD_AB_IMAGE_URI', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/images');
 
@@ -35,15 +36,12 @@ function cd_ab_activation() {
 function cd_ab_deactivation() { delete_option('cd_ab'); }
 
 /* LOAD LANGUAGES */
+add_action('plugins_loaded', 'cd_ab_load_textdomain');
 function cd_ab_load_textdomain() {
-    $locale = apply_filters('buddypress_locale', get_locale() );
-    $mofile = dirname( __File__ )   . "/langs/$locale.mo";
-
-    if ( file_exists( $mofile ) )
-        load_textdomain('cd_ab', $mofile );
+    load_plugin_textdomain( 'cd_ab', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 }
-add_action ('plugins_loaded', 'cd_ab_load_textdomain', 7 );
 
+// Load parts of the plugin only on proper places
 if(is_admin()){
     require ( WP_PLUGIN_DIR . '/cd-bp-avatar-bubble/cd-ab-admin.php');
 }

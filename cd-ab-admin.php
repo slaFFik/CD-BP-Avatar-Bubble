@@ -31,7 +31,7 @@ class CD_AB_ADMIN_PAGE {
     }
 	
     function on_admin_menu() {
-        $this->pagehook = add_submenu_page('bp-general-settings', __('CD Avatar Bubble', 'cd_ab'), __('CD Avatar Bubble', 'cd_ab'), 'manage_options', 'cd-ab-admin', array( &$this, 'on_show_page') );
+        $this->pagehook = add_submenu_page('bp-general-settings', __('BP Avatar Bubble', 'cd_ab'), __('BP Avatar Bubble', 'cd_ab'), 'manage_options', 'cd-ab-admin', array( &$this, 'on_show_page') );
         add_action('load-'.$this->pagehook, array( &$this, 'on_load_page') );
     }
 	
@@ -65,7 +65,7 @@ class CD_AB_ADMIN_PAGE {
         <div id="cd-ab-admin-general" class="wrap">
             <?php screen_icon('options-general'); ?>
             <style>table.link-group li{margin:0 0 0 25px}</style>
-            <h2><?php _e('CD Avatar Bubble','cd_ab') ?> <sup><?php echo 'v' . CD_AB_VERSION; ?></sup> &rarr; <?php _e('Interactive Avatars', 'cd_ab') ?></h2>
+            <h2><?php _e('BP Avatar Bubble','cd_ab') ?> <sup><?php echo 'v' . CD_AB_VERSION; ?></sup> &rarr; <?php _e('Interactive Avatars', 'cd_ab') ?></h2>
         
             <?php 
             if ( isset($_POST['saveData']) ) {
@@ -330,7 +330,7 @@ class CD_AB_ADMIN_PAGE {
             <input name="cd_ab_color" type="radio" value="black"<?php echo( ('black' == $cd_ab['color'] ) ? ' checked="checked"' : ''); ?> /> <?php _e('Just Black', 'cd_ab'); ?><br />
             <input name="cd_ab_color" type="radio" value="grey"<?php echo( ('grey' == $cd_ab['color'] ) ? ' checked="checked"' : ''); ?> /> <?php _e('Simply Grey', 'cd_ab'); ?>
         </p>
-        <hr style="width:82%">
+        <hr style="width:95%">
         <p><?php _e('Do you want to use images or CSS3 borders+shadows for corners?','cd_ab') ?></p>
         <p>
             <input name="cd_ab_borders" type="radio" value="images"<?php echo( ('images' == $cd_ab['borders'] ) ? ' checked="checked"' : ''); ?> /> <?php _e('Images', 'cd_ab'); ?><br />
