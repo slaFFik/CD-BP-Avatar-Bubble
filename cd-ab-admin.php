@@ -56,7 +56,7 @@ class CD_AB_ADMIN_PAGE {
         global $screen_layout_columns;
         
         //define some data can be given to each metabox during rendering
-        $cd_ab = get_option('cd_ab'); 
+        $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab'); 
         if(!is_array($cd_ab['groups']['data']))
             $cd_ab['groups']['data'] = array();
         if(!is_array($cd_ab['groups']['type']))

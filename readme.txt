@@ -50,10 +50,12 @@ Try to reinstall the plugin too.
 
 == Changelog ==
 
-= 2.4 (22.08.2012) =
-* Testing compatibility with BuddyPress 1.6.x
+= 2.4 (27.08.2012) =
+* Tested compatibility with BuddyPress 1.6.x
 * Fixed some notices
 * Fixed datetime field errors
+* Changed the way i18n is initiated
+* Fixed huge bug for WordPress MS
 
 = 2.3.1 (28.03.2012) =
 * Admin area fixes (better compatibility with WordPress Multisite)

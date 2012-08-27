@@ -54,7 +54,7 @@ if(!is_admin()){
 ***/
 add_filter('bp_core_fetch_avatar', 'cd_ab_rel_filter', 10, 2 );
 function cd_ab_rel_filter( $text, $params ) {
-    $cd_ab = get_option('cd_ab');
+    $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
     
     if ( $params['object'] == 'user') {
         return preg_replace('~<img (.+?) />~i', "<img $1 rel='user_{$params['item_id']}' />", $text );
@@ -74,7 +74,7 @@ add_filter( 'bp_get_activity_action', 'cd_ab_rel_activity_filter', 99, 2 );
 function cd_ab_rel_activity_filter($action, $activity){
     switch ( $activity->component ) {
         case 'groups' :
-            $cd_ab = get_option('cd_ab');
+            $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
             if($cd_ab['groups']['status'] == 'on') {
                 $reverse_content = strrev( $action );
                 $position = strpos( $reverse_content, 'gmi<' );
@@ -124,7 +124,7 @@ function cd_ab_get_add_friend_button( $ID = false, $friend_status = false ) {
 add_action('wp_ajax_cd_ab_the_avatardata', 'cd_ab_the_avatardata');
 add_action('wp_ajax_nopriv_cd_ab_the_avatardata', 'cd_ab_the_avatardata');
 function cd_ab_the_avatardata(){
-    $cd_ab = get_option('cd_ab');
+    $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
     $ID    = $_GET['ID'];
     $type  = $_GET['type'];
     

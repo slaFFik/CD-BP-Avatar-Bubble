@@ -4,7 +4,7 @@ function cd_ab_add_js() {
     if (is_admin())
         return false;
 
-    $cd_ab = get_option('cd_ab');
+    $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
     if ( $cd_ab['access'] == 'admin' && !is_super_admin() )
         return false;
 
@@ -17,26 +17,28 @@ function cd_ab_add_js() {
 }
 add_action('wp_print_scripts', 'cd_ab_add_js');
 
+// Global js variables
+add_action('wp_head', 'cd_ab_add_global_js_vars');
 function cd_ab_add_global_js_vars() {
     // do not load on admin pages
     if (is_admin())
         return false;
         
-    $cd_ab = get_option('cd_ab'); ?>
+    $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab'); ?>
     <script type="text/javascript">
         var ajax_url = "<?php echo admin_url('admin-ajax.php'); ?>";
         var ajax_image = "<?php echo CD_AB_IMAGE_URI; ?>";
         var ajax_delay = "<?php echo $cd_ab['delay'] ?>";
     </script>
 <?php }
-add_action('wp_head', 'cd_ab_add_global_js_vars');
 
 function cd_ab_add_css() {
     // do not load on admin pages
     if (is_admin())
         return false;
         
-    $cd_ab = get_option('cd_ab');
+    $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
+
     if ( $cd_ab['access'] == 'admin' && !is_super_admin() )
         return false;
 
