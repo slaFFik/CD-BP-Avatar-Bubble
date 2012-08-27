@@ -1,7 +1,7 @@
 === CD BuddyPress Avatar Bubble ===
 Contributors: slaFFik, valant
 Tags: buddypress, profile, ajax, avatar, admin, privacy
-Requires at least: WordPress 3.1 and BuddyPress 1.2.x
+Requires at least: WordPress 3.2 and BuddyPress 1.5
 Tested up to: WordPress 3.4.1 and BuddyPress 1.6.1
 Stable tag: 2.4
 
