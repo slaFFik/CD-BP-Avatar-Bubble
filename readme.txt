@@ -1,4 +1,4 @@
-=== CD BuddyPress Avatar Bubble ===
+=== BuddyPress Avatar Bubble ===
 Contributors: slaFFik, valant
 Tags: buddypress, profile, ajax, avatar, admin, privacy
 Requires at least: WordPress 3.2 and BuddyPress 1.5
