@@ -3,7 +3,7 @@
 if ( !function_exists('add_action') ) {
     header('Status: 403 Forbidden');
     header('HTTP/1.1 403 Forbidden');
-    exit();
+    die;
 }
 
 $new_cd_ab_admin = new CD_AB_ADMIN_PAGE();
@@ -12,7 +12,7 @@ class CD_AB_ADMIN_PAGE {
 
     //constructor of class, PHP4 compatible construction for backward compatibility (until WP 3.1)
     function cd_ab_admin_page() {
-        add_filter('screen_layout_columns', array( &$this, 'on_screen_layout_columns'), 10, 2 );
+        add_filter('screen_layout_columns', array( &$this, 'on_screen_layout_columns'), 10, 3 );
         if (is_multisite()){
             add_action('network_admin_menu', array( &$this, 'on_admin_menu') );
         }else{
@@ -20,18 +20,31 @@ class CD_AB_ADMIN_PAGE {
         }
     }
     
-    function on_screen_layout_columns( $columns, $screen ) {
-        $columns[$screen] = 2;
-        
-        if ( isset($this->pagehook) && !empty($this->pagehook) && $screen == $this->pagehook && is_multisite()) {
-            $columns[$this->pagehook] = 1;
-        }
+    function on_screen_layout_columns( $columns, $screen, $obj ) {
+        $user_id = get_current_user_id();
 
+        if ( !$obj->get_option( 'layout_columns' ) ) {
+            if ( isset($this->pagehook) && !empty($this->pagehook) && $screen == $this->pagehook && is_multisite()) {
+                $columns[$this->pagehook] = 1;
+                update_user_option($user_id, 'screen_layout_'.$screen, 1);
+            }else{
+                $columns[$this->pagehook] = 2;
+                update_user_option($user_id, 'screen_layout_'.$screen, 2);
+            }
+        }
+        
         return $columns;
     }
 	
     function on_admin_menu() {
-        $this->pagehook = add_submenu_page('bp-general-settings', __('BP Avatar Bubble', 'cd_ab'), __('BP Avatar Bubble', 'cd_ab'), 'manage_options', 'cd-ab-admin', array( &$this, 'on_show_page') );
+        $this->pagehook = add_submenu_page(
+                            is_multisite()?'settings.php':'options-general.php',
+                            __('BP Avatar Bubble', 'cd_ab'),
+                            __('BP Avatar Bubble', 'cd_ab'), 
+                            'manage_options',
+                            'cd-ab-admin', 
+                            array( &$this, 'on_show_page')
+                        );
         add_action('load-'.$this->pagehook, array( &$this, 'on_load_page') );
     }
 	
@@ -93,48 +106,46 @@ class CD_AB_ADMIN_PAGE {
                 update_option('cd_ab', $cd_ab);
 
                 echo "<div id='message' class='updated fade'><p>" . __('All changes were saved. Go and check results!', 'cd_ab') . "</p></div>";
-            }
-        
-            if (is_multisite()){ ?>
-                <form action="<?php echo site_url() . '/wp-admin/network/admin.php?page=cd-ab-admin' ?>" id="cd-ab-form" method="post">
-            <?php }else{ ?>
-                <form action="<?php echo site_url() . '/wp-admin/admin.php?page=cd-ab-admin' ?>" id="cd-ab-form" method="post">
-            <?php }
-                    wp_nonce_field('cd-ab-admin-general');
-                    wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false );
-                    wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false ); ?>
-                
-                    <div id="poststuff" class="metabox-holder<?php echo (2 == $screen_layout_columns) ? ' has-right-sidebar' : ''; ?>">
-                        <?php if ( !is_multisite() ){ ?>
-                            <div id="side-info-column" class="inner-sidebar">
-                                <?php do_meta_boxes($this->pagehook, 'side', $cd_ab); ?>
-                            </div>
-                        <?php } ?>
-                        <div id="post-body" class="has-sidebar">
-                            <div id="post-body-content" class="has-sidebar-content">
-                                <?php
-                                do_meta_boxes($this->pagehook, 'normal', $cd_ab); 
-                                if (is_multisite()){
-                                    do_meta_boxes($this->pagehook, 'side', $cd_ab);
-                                }
-                                ?>
-                                <p>
-                                    <input type="submit" value="<?php _e('Save Selected Fields', 'cd_ab') ?>" class="button-primary" name="saveData"/>    
-                                </p>
-                            </div>
+            } ?>
+
+            <form action="" id="cd-ab-form" method="post">
+                <?php 
+                wp_nonce_field('cd-ab-admin-general');
+                wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false );
+                wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false );
+                ?>
+            
+                <div id="poststuff" class="metabox-holder<?php echo (2 == $screen_layout_columns) ? ' has-right-sidebar' : ''; ?>">
+                    <?php if ( !is_multisite() ){ ?>
+                        <div id="side-info-column" class="inner-sidebar">
+                            <?php do_meta_boxes($this->pagehook, 'side', $cd_ab); ?>
                         </div>
-                    </div>  
-                </form>
-            </div>
+                    <?php } ?>
+                    <div id="post-body" class="has-sidebar">
+                        <div id="post-body-content" class="has-sidebar-content">
+                            <?php
+                            do_meta_boxes($this->pagehook, 'normal', $cd_ab); 
+                            if (is_multisite()){
+                                do_meta_boxes($this->pagehook, 'side', $cd_ab);
+                            }
+                            ?>
+                            <p>
+                                <input type="submit" value="<?php _e('Save Selected Fields', 'cd_ab') ?>" class="button-primary" name="saveData"/>    
+                            </p>
+                        </div>
+                    </div>
+                </div>  
+            </form>
+        </div>
         <script type="text/javascript">
-            //<![CDATA[
-            jQuery(document).ready( function() {
-                // close postboxes that should be closed
-                jQuery('.if-js-closed').removeClass('if-js-closed').addClass('closed');
-                // postboxes setup
-                postboxes.add_postbox_toggles('<?php echo $this->pagehook; ?>');
-            });
-            //]]>
+        //<![CDATA[
+        jQuery(document).ready( function() {
+            // close postboxes that should be closed
+            jQuery('.if-js-closed').removeClass('if-js-closed').addClass('closed');
+            // postboxes setup
+            postboxes.add_postbox_toggles('<?php echo $this->pagehook; ?>');
+        });
+        //]]>
         </script>
         
     <?php
