@@ -3,13 +3,13 @@
 Plugin Name: BuddyPress Avatar Bubble
 Plugin URI: http://cosydale.com/plugin-cd-avatar-bubble.html
 Description: After moving your mouse pointer on a BuddyPress user avatar you will see a bubble with the defined by admin information about this user.
-Version: 2.4
+Version: 2.5
 Author: slaFFik
 Author URI: http://cosydale.com/
 Network: true
 */
 
-define ('CD_AB_VERSION', '2.4');
+define ('CD_AB_VERSION', '2.5');
 define ('CD_AB_IMAGE_URI', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/images');
 
 register_activation_hook( __FILE__, 'cd_ab_activation');
@@ -305,11 +305,25 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
         $output .= '<p class="popupLine"'. $class .'>'. $link . cd_ab_get_add_friend_button( $ID, false) .'</p>';
     }
     
-    do_action('cd_ab_before_fields');
+    do_action('cd_ab_before_fields', $ID);
     
+    // get visibility levels - array (key - field_id, value - visibility level: public|loggedin|friends)
+    $vis_levels = get_user_option('bp_xprofile_visibility_levels', $ID);
+
     foreach ( $cd_ab as $field_id => $field_data ) {
+        if($vis_levels && isset($vis_levels[$field_id])){
+            if($vis_levels[$field_id] == 'loggedin' && !is_user_logged_in()){
+                continue;
+            }
+            if($vis_levels[$field_id] == 'friends' && !friends_check_friendship($ID, $bp->loggedin_user->id)){
+                continue;
+            }
+            do_action('cd_ab_check_xprofile_fields_visibility', $ID, $vis_levels);
+        }
+
         if ( !empty($field_data['name']) && is_numeric( $field_id ) ) {
             $field_value = xprofile_get_field_data( $field_id, $ID );
+
             if ( $field_value != null ) {
                 if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox') 
                     $field_value = bp_unserialize_profile_field ( $field_value );
