@@ -230,7 +230,7 @@ function cd_ab_get_the_group_data($ID, $cd_ab){
             if ( bp_forums_is_installed_correctly() ) {
                 if( in_array('forum_stat', $cd_ab['groups']['data']) ){
                     // get all required data for count
-                    $forum_id = groups_get_groupmeta( $ID, 'forum_id' );
+                    $forum_id     = groups_get_groupmeta( $ID, 'forum_id' );
                     $forum_counts = bp_forums_get_forum_topicpost_count( (int)$forum_id );
                     if ( 1 == (int) $forum_counts[0]->topics ) {
                         $total_topics = sprintf( __( '%d topic', 'buddypress' ), (int) $forum_counts[0]->topics );
