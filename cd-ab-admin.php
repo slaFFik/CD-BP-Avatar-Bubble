@@ -59,7 +59,10 @@ class CD_AB_ADMIN_PAGE {
         add_meta_box('cd-ab-admin-b-color', __('Border Color', 'cd_ab'), array(&$this, 'on_cd_ab_admin_b_color'), $this->pagehook, 'side', 'low');
         // main content - normal
         add_meta_box('cd-ab-admin-users',   __('Users Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_users'), $this->pagehook, 'normal', 'core');
-        add_meta_box('cd-ab-admin-groups',  __('Groups Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
+        add_meta_box('cd-ab-admin-groups',  
+                     __('Groups Avatars Options', 'cd_ab') . 
+                     (!bp_is_active('groups')?'<span class="description">&nbsp;&rarr;&nbsp;'.__('Groups Component is not activated', 'cd_ab').'</span>':''), 
+                     array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
         add_meta_box('cd-ab-admin-extra',   __('Extra Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_extra'), $this->pagehook, 'normal', 'core');
     }
     
