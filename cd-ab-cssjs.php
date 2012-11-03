@@ -1,4 +1,5 @@
 <?php
+add_action('wp_print_scripts', 'cd_ab_add_js');
 function cd_ab_add_js() {
     // do not load on admin pages
     if (is_admin())
@@ -13,9 +14,7 @@ function cd_ab_add_js() {
     }else{
         wp_enqueue_script('CD_AB_JS', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/hover.min.js', array('jquery') );
     }
-
 }
-add_action('wp_print_scripts', 'cd_ab_add_js');
 
 // Global js variables
 add_action('wp_head', 'cd_ab_add_global_js_vars');

@@ -70,8 +70,8 @@ function cd_ab_rel_filter( $text, $params ) {
 }
 
 // Display bubbe when clicking/hovering on a group avatar in activity stream
-add_filter( 'bp_get_activity_action', 'cd_ab_rel_activity_filter', 99, 2 );
-function cd_ab_rel_activity_filter($action, $activity){
+add_filter( 'bp_get_activity_action', 'cd_ab_rel_activity_filter', 99, 2);
+function cd_ab_rel_activity_filter($action,$activity){
     switch ( $activity->component ) {
         case 'groups' :
             $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
@@ -79,7 +79,7 @@ function cd_ab_rel_activity_filter($action, $activity){
                 $reverse_content = strrev( $action );
                 $position = strpos( $reverse_content, 'gmi<' );
                 preg_match('~group-(\d++)-avatar~', $action, $match);
-                $replace = "rel='group_{$match[1][0]}' ";
+                $replace = "rel='group_{$match[1]}' ";
                 $action = substr_replace( $action, $replace, -$position + 1, 0 );
             }
             break;
