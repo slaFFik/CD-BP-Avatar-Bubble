@@ -3,13 +3,13 @@
 Plugin Name: BuddyPress Avatar Bubble
 Plugin URI: http://cosydale.com/plugin-cd-avatar-bubble.html
 Description: After moving your mouse pointer on a BuddyPress user avatar you will see a bubble with the defined by admin information about this user.
-Version: 2.5
+Version: 2.5.1
 Author: slaFFik
 Author URI: http://cosydale.com/
 Network: true
 */
 
-define ('CD_AB_VERSION', '2.5');
+define ('CD_AB_VERSION', '2.5.1');
 define ('CD_AB_IMAGE_URI', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/images');
 
 register_activation_hook( __FILE__, 'cd_ab_activation');
@@ -17,20 +17,20 @@ register_deactivation_hook( __FILE__, 'cd_ab_deactivation');
 function cd_ab_activation() {
     $cd_ab['color']    = 'blue';
     $cd_ab['borders']  = 'images';
-    
+
     $cd_ab['access']   = 'all';
-    
+
     $cd_ab['messages'] = 'yes';
     $cd_ab['friend']   = 'no';
-    
+
     $cd_ab['action']   = 'click';
     $cd_ab['delay']    = '0';
-    
+
     $cd_ab['groups']['status'] = 'off';
     $cd_ab['groups']['join']   = 'off';
     $cd_ab['groups']['type']   = array('public');
     $cd_ab['groups']['data']   = array('name', 'short_desc', 'members', 'forum_stat');
-    
+
     add_option('cd_ab', $cd_ab, '', 'yes');
 }
 function cd_ab_deactivation() { delete_option('cd_ab'); }
@@ -50,12 +50,12 @@ if(!is_admin()){
 }
 
 /***
-* BUBBLE ENGINE 
+* BUBBLE ENGINE
 ***/
 add_filter('bp_core_fetch_avatar', 'cd_ab_rel_filter', 10, 2 );
 function cd_ab_rel_filter( $text, $params ) {
     $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
-    
+
     if ( $params['object'] == 'user') {
         return preg_replace('~<img (.+?) />~i', "<img $1 rel='user_{$params['item_id']}' />", $text );
     }elseif( $params['object'] == 'group') {
@@ -101,14 +101,14 @@ function cd_ab_get_add_friend_button( $ID = false, $friend_status = false ) {
 
     if ( $bp->loggedin_user->id == $ID )
         return false;
-    
+
     if ( bp_is_active( 'friends' ) ) {
         if ( empty( $friend_status ) )
             $friend_status = friends_check_friendship_status( $bp->loggedin_user->id, $ID );
     }
-        
+
     $button = '';
-        
+
     if ('pending' == $friend_status ) {
         $button .= '<a class="requested" href="' . $bp->loggedin_user->domain . $bp->friends->slug . '/">' . __('Friendship Requested', 'buddypress') . '</a>';
     } else if ('is_friend' == $friend_status ) {
@@ -127,7 +127,7 @@ function cd_ab_the_avatardata(){
     $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
     $ID    = $_GET['ID'];
     $type  = $_GET['type'];
-    
+
     switch($type){
         case 'user':
             if ( $cd_ab['access'] == 'admin' && is_super_admin() ) {
@@ -164,9 +164,9 @@ function cd_ab_get_the_group_data($ID, $cd_ab){
             echo __('You don\'t have enough rights to view data of this group','cd_ab').'</div>';
             die;
         }
-            
+
         $group_link = $bp->root_domain . '/' . BP_GROUPS_SLUG . '/' . $group->slug;
-        
+
         // Group Name
         if( in_array('name', $cd_ab['groups']['data']) ){
             echo '<p class="popupLine" style="padding-top:0"><a href="'. $group_link .'">'.$group->name.'</a>';
@@ -178,7 +178,7 @@ function cd_ab_get_the_group_data($ID, $cd_ab){
             if( in_array('short_desc', $cd_ab['groups']['data']) )
                 echo '<p class="popupLine" style="padding-top:0"><a href="'. $group_link .'">#</a> ' . bp_create_excerpt( $group->description, 10 ) . '</p>';
         }
-        
+
         echo '<p class="popupLine">';
             // Group Status display
             $type_used = false;
@@ -195,31 +195,31 @@ function cd_ab_get_the_group_data($ID, $cd_ab){
                 echo $type;
                 $type_used = true;
             }
-            
+
             // Formatted number of group members
             if( in_array('members', $cd_ab['groups']['data']) ) {
                 if ( 1 == $group->total_member_count )
                     $members_data = apply_filters( 'bp_get_group_member_count', sprintf( __( '%s member', 'buddypress' ), bp_core_number_format( $group->total_member_count ) ) );
                 else
                     $members_data = apply_filters( 'bp_get_group_member_count', sprintf( __( '%s members', 'buddypress' ), bp_core_number_format( $group->total_member_count ) ) );
-                    if ($type_used) 
+                    if ($type_used)
                         echo '<span style="float:right">' . $members_data . '</span>';
-                    else 
+                    else
                         echo $members_data;
             }
          echo '</p>';
-        
+
         if( in_array('join', $cd_ab['groups']['data']) ) {
             $button = bp_get_group_join_button($group);
             if(!empty($button)){
                 echo $button;
             }
         }
-        
+
         // Display activity date
         if( in_array('activity_date', $cd_ab['groups']['data']) ) {
             $activity_data = sprintf( __('Active %s', 'cd_ab'), bp_core_time_since( $group->last_activity ) );
-            echo '<p class="popupLine">' . $activity_data; 
+            echo '<p class="popupLine">' . $activity_data;
             if( in_array('feed_link', $cd_ab['groups']['data']) )
                 echo ' (<a href="'. $group_link .'/feed" target="_blank">'.__( 'RSS', 'buddypress' ).'</a>)';
             echo '</p>';
@@ -247,35 +247,35 @@ function cd_ab_get_the_group_data($ID, $cd_ab){
                 }
             }
         }
-        
+
     echo '<div style="clear:both"></div></div>';
 }
 
 // For users
 function cd_ab_get_the_userdata($ID, $cd_ab) {
     global $bp;
-    
+
     if ( !trim($cd_ab['delay']) ) {
         echo '0|~|';
     }else{
         echo $cd_ab['delay'] . '|~|';
     }
-    
+
     $i       = 1;
     $action  = 'false';
     $output  = $mention = $message = $profile = $link = '';
 
     do_action('cd_ab_before_default');
-    
+
     if ( $cd_ab['messages'] == 'yes') {
         $i++;
 
         $profile .= '<strong><a href="'. bp_core_get_user_domain( $ID, false, false ) .'" title="'. __('Go to profile page',  'cd_ab') .'">#</a></strong>';
-        
+
         if ( $cd_ab['action'] == 'click') {
             $action = 'true';
         }
-    
+
         if ( is_user_logged_in() ) {
             if ( bp_is_active( 'activity' ) ) {
                 $mention .= '<strong><a href="'. bp_core_get_user_domain( $bp->loggedin_user->id, false, false ) . BP_ACTIVITY_SLUG .'/?r='.bp_core_get_username( $ID, false, false ).'" title="'. __('Mention this user', 'cd_ab') .'">@'. bp_core_get_username( $ID, false, false ) .'</a></strong>';
@@ -304,9 +304,9 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
             $link = '<strong><a href="'. bp_core_get_user_domain( $ID, false, false ) .'" title="'. __('Go to profile page',  'cd_ab') .'">#</a> | </strong>';
         $output .= '<p class="popupLine"'. $class .'>'. $link . cd_ab_get_add_friend_button( $ID, false) .'</p>';
     }
-    
+
     do_action('cd_ab_before_fields', $ID);
-    
+
     // get visibility levels - array (key - field_id, value - visibility level: public|loggedin|friends)
     $vis_levels = get_user_option('bp_xprofile_visibility_levels', $ID);
 
@@ -325,7 +325,7 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
             $field_value = xprofile_get_field_data( $field_id, $ID );
 
             if ( $field_value != null ) {
-                if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox') 
+                if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox')
                     $field_value = bp_unserialize_profile_field ( $field_value );
                 if ( $field_data['type'] == 'datebox' && $field_value != null ){
                     if(strpos($field_value, '-')){
@@ -334,11 +334,11 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
                         $field_value = bp_format_time( bp_unserialize_profile_field ( $field_value), true );
                     }
                 }
-                if ( $i != 1 ) 
+                if ( $i != 1 )
                     $class = ' style="padding-top:6px;"';
-                
+
                 if ( isset($field_data['link']) && $field_data['link'] == 'yes') {
-                    if (is_array($field_value)) 
+                    if (is_array($field_value))
                         $field_value = implode(',', $field_value);
                     $field_link = xprofile_filter_link_profile_data( $field_value, $field_data['type'] );
                     $field_link = apply_filters('cd_ab_field_link', $field_link, $ID, $field_id, $field_data['type'], $field_value );
@@ -351,14 +351,14 @@ function cd_ab_get_the_userdata($ID, $cd_ab) {
             $i++;
         }
     }
-    
+
     $output = apply_filters('cd_ab_output', $output );
-    
+
     do_action('cd_ab_after_default');
-    
+
     if ( $output == '')
         $output = __('Nothing to display. Check a bit later please.', 'cd_ab');
-    
+
     echo "<div id='user_$ID'>$output<div style='clear:both'></div></div>";
 }
 

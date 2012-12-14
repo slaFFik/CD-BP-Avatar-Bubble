@@ -2,18 +2,18 @@
 Contributors: slaFFik, valant
 Tags: buddypress, profile, ajax, avatar, admin, privacy
 Requires at least: WordPress 3.2 and BuddyPress 1.5
-Tested up to: WordPress 3.4.1 and BuddyPress 1.6.1
-Stable tag: 2.5
+Tested up to: WordPress 3.5 and BuddyPress 1.6.2
+Stable tag: 2.5.1
 
 After moving your mouse pointer on a BuddyPress user avatar (or clicking) you will see a bubble with the defined by admin information about this user.
 
 == Description ==
 
-After moving your mouse pointer on a BuddyPress user avatar (or clicking it) you will see a bubble with the defined by admin information about this user. 
+After moving your mouse pointer on a BuddyPress user avatar (or clicking it) you will see a bubble with the defined by admin information about this user.
 
 Ajax calls save your bandwidth and time spent on waiting. So if you want your users can easily get information about themselves on a fly - use CD BP Avatar Bubble.
 
-This plugin wouldn't exist without [Marco](http://teethgrinder.net) suggestion. His idea - my realization. Have a plugin idea or suggestion? Contact me on [twitter](http://twitter.com/slaFFik). 
+This plugin wouldn't exist without [Marco](http://teethgrinder.net) suggestion. His idea - my realization. Have a plugin idea or suggestion? Contact me on [twitter](http://twitter.com/slaFFik).
 
 I also want to thank my testers: [ZigZag](http://racingmag.ru/), [Альберт](http://sultan.ufalavka.ru/), [Sarah](http://wpmu.org/) and others.
 
@@ -49,6 +49,9 @@ Try to reinstall the plugin too.
 2. On a production site
 
 == Changelog ==
+
+= 2.5.1 (14.12.2012) =
+* WordPress 3.5 and BuddyPress 1.6.2 support
 
 = 2.5 (03.11.2012) =
 * Respect profile fields visiblility levels introduced in BuddyPress 1.6
@@ -87,7 +90,7 @@ Try to reinstall the plugin too.
 * Better options page
 * Improved bubble preloading display - on a proper place
 
-= 1.2.4 = 
+= 1.2.4 =
 * Updated Japanese translation (thanks to [chestnut_jp](http://buddypress.org/community/members/chestnut_jp/))
 * Fixed 1 string localization problem (thanks to [chestnut_jp](http://buddypress.org/community/members/chestnut_jp/))
 

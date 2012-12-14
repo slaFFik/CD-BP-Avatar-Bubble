@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CD BuddyPress Avatar Bubble\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-03 14:42+0200\n"
+"POT-Creation-Date: 2012-12-14 10:01+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: slaFFik <slava.abakumov@gmail.com>\n"
 "Language-Team: slaFFik <slava.abakumov@gmail.com>\n"
@@ -60,7 +60,7 @@ msgstr "Сохранить выбранные поля"
 
 #: W:\_server\home\ovi\ab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:161
 msgid "Do you want to enable avatar bubble for groups too?"
-msgstr "CD Avatar Bubble"
+msgstr "Включить окошко данных для аватаров групп?"
 
 #: W:\_server\home\ovi\ab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:163
 msgid "Enable"
@@ -376,7 +376,7 @@ msgstr "Вам необходимо авторизоваться, чтобы у�
 msgid "You should be logged in to send a private message"
 msgstr "Вам необходимо авторизоваться, чтобы отправлять личные сообщения"
 
-#: W:\_server\home\ovi\ab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:346
+#: W:\_server\home\ovi\ab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:360
 msgid "Nothing to display. Check a bit later please."
 msgstr "Нечего отображать. Проверьте информацию позже."
 

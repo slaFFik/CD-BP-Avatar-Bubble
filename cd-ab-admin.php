@@ -19,7 +19,7 @@ class CD_AB_ADMIN_PAGE {
             add_action('admin_menu', array( &$this, 'on_admin_menu') );
         }
     }
-    
+
     function on_screen_layout_columns( $columns, $screen, $obj ) {
         $user_id = get_current_user_id();
 
@@ -32,22 +32,22 @@ class CD_AB_ADMIN_PAGE {
                 update_user_option($user_id, 'screen_layout_'.$screen, 2);
             }
         }
-        
+
         return $columns;
     }
-	
+
     function on_admin_menu() {
         $this->pagehook = add_submenu_page(
                             is_multisite()?'settings.php':'options-general.php',
                             __('BP Avatar Bubble', 'cd_ab'),
-                            __('BP Avatar Bubble', 'cd_ab'), 
+                            __('BP Avatar Bubble', 'cd_ab'),
                             'manage_options',
-                            'cd-ab-admin', 
+                            'cd-ab-admin',
                             array( &$this, 'on_show_page')
                         );
         add_action('load-'.$this->pagehook, array( &$this, 'on_load_page') );
     }
-	
+
     //will be executed if wordpress core detects this page has to be rendered
     function on_load_page() {
         wp_enqueue_script('common');
@@ -59,20 +59,20 @@ class CD_AB_ADMIN_PAGE {
         add_meta_box('cd-ab-admin-b-color', __('Border Color', 'cd_ab'), array(&$this, 'on_cd_ab_admin_b_color'), $this->pagehook, 'side', 'low');
         // main content - normal
         add_meta_box('cd-ab-admin-users',   __('Users Avatars Options', 'cd_ab'), array( &$this, 'on_cd_ab_admin_users'), $this->pagehook, 'normal', 'core');
-        add_meta_box('cd-ab-admin-groups',  
-                     __('Groups Avatars Options', 'cd_ab') . 
-                     (!bp_is_active('groups')?'<span class="description">&nbsp;&rarr;&nbsp;'.__('BP Groups Component is not activated', 'cd_ab').'</span>':''), 
+        add_meta_box('cd-ab-admin-groups',
+                     __('Groups Avatars Options', 'cd_ab') .
+                     (!bp_is_active('groups')?'<span class="description">&nbsp;&rarr;&nbsp;'.__('BP Groups Component is not activated', 'cd_ab').'</span>':''),
                      array( &$this, 'on_cd_ab_admin_groups'), $this->pagehook, 'normal', 'core');
         add_meta_box('cd-ab-admin-extra',   __('Extra Options', 'cd_ab'), array(&$this, 'on_cd_ab_admin_extra'), $this->pagehook, 'normal', 'core');
     }
-    
+
     //executed to show the plugins complete admin page
     function on_show_page() {
         global $bp, $wpdb;
         global $screen_layout_columns;
-        
+
         //define some data can be given to each metabox during rendering
-        $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab'); 
+        $cd_ab = get_blog_option(bp_get_root_blog_id(), 'cd_ab');
         if(!is_array($cd_ab['groups']['data']))
             $cd_ab['groups']['data'] = array();
         if(!is_array($cd_ab['groups']['type']))
@@ -82,25 +82,25 @@ class CD_AB_ADMIN_PAGE {
             <?php screen_icon('options-general'); ?>
             <style>table.link-group li{margin:0 0 0 25px}</style>
             <h2><?php _e('BP Avatar Bubble','cd_ab') ?> <sup><?php echo 'v' . CD_AB_VERSION; ?></sup> &rarr; <?php _e('Interactive Avatars', 'cd_ab') ?></h2>
-        
-            <?php 
+
+            <?php
             if ( isset($_POST['saveData']) ) {
                 $cd_ab             = $_POST['cd_ab_display'];
                 $cd_ab['color']    = $_POST['cd_ab_color'];
                 $cd_ab['borders']  = $_POST['cd_ab_borders'];
-                
+
                 $cd_ab['access']   = $_POST['cd_ab_access'];
-                
+
                 $cd_ab['messages'] = $_POST['cd_ab_messages'];
                 $cd_ab['friend']   = $_POST['cd_ab_friend'];
-                
+
                 $cd_ab['action']   = $_POST['cd_ab_action'];
-                
+
                 $cd_ab['groups']['status'] = $_POST['cd_ab_groups'];
                 $cd_ab['groups']['join']   = isset($_POST['cd_ab_groups_join'])?$_POST['cd_ab_groups_join']:'off';
                 $cd_ab['groups']['type']   = $_POST['cd_ab_groups_type'];
                 $cd_ab['groups']['data']   = $_POST['cd_ab_groups_data'];
-                
+
                 if ( is_numeric( $_POST['cd_ab_delay'] ) ) {
                     $cd_ab['delay'] = $_POST['cd_ab_delay'];
                 }else{
@@ -112,12 +112,12 @@ class CD_AB_ADMIN_PAGE {
             } ?>
 
             <form action="" id="cd-ab-form" method="post">
-                <?php 
+                <?php
                 wp_nonce_field('cd-ab-admin-general');
                 wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false );
                 wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false );
                 ?>
-            
+
                 <div id="poststuff" class="metabox-holder<?php echo (2 == $screen_layout_columns) ? ' has-right-sidebar' : ''; ?>">
                     <?php if ( !is_multisite() ){ ?>
                         <div id="side-info-column" class="inner-sidebar">
@@ -127,17 +127,17 @@ class CD_AB_ADMIN_PAGE {
                     <div id="post-body" class="has-sidebar">
                         <div id="post-body-content" class="has-sidebar-content">
                             <?php
-                            do_meta_boxes($this->pagehook, 'normal', $cd_ab); 
+                            do_meta_boxes($this->pagehook, 'normal', $cd_ab);
                             if (is_multisite()){
                                 do_meta_boxes($this->pagehook, 'side', $cd_ab);
                             }
                             ?>
                             <p>
-                                <input type="submit" value="<?php _e('Save Selected Fields', 'cd_ab') ?>" class="button-primary" name="saveData"/>    
+                                <input type="submit" value="<?php _e('Save Selected Fields', 'cd_ab') ?>" class="button-primary" name="saveData"/>
                             </p>
                         </div>
                     </div>
-                </div>  
+                </div>
             </form>
         </div>
         <script type="text/javascript">
@@ -150,11 +150,11 @@ class CD_AB_ADMIN_PAGE {
         });
         //]]>
         </script>
-        
+
     <?php
     }
 
-    function on_cd_ab_admin_groups($cd_ab) { 
+    function on_cd_ab_admin_groups($cd_ab) {
         do_action( 'cd_ab_admin_groups_before', $cd_ab ); ?>
         <table class="widefat link-group">
             <tr>
@@ -204,18 +204,18 @@ class CD_AB_ADMIN_PAGE {
         <?php
         do_action( 'cd_ab_admin_privacy', $cd_ab );
     }
-    
+
     function on_cd_ab_admin_users($cd_ab) {
         global $bp, $wpdb;
         $all_fields_ids = $wpdb->get_results( $wpdb->prepare( "
-            SELECT id, group_id, name, type 
-            FROM {$bp->profile->table_name_fields} 
-            WHERE parent_id = 0 
-            ORDER BY group_id ASC, field_order ASC" ) );
+            SELECT id, group_id, name, type
+            FROM {$bp->profile->table_name_fields}
+            WHERE parent_id = 0
+            ORDER BY group_id ASC, field_order ASC", array() ) );
         do_action( 'cd_ab_admin_users_before', $cd_ab ); ?>
         <p>
         <script type="text/javascript">
-        // Select all checkboxes after clicking the link All 
+        // Select all checkboxes after clicking the link All
         jQuery(document).ready(function(){
             jQuery("a.select_all").click( function(e) {
                 e.preventDefault();
@@ -238,18 +238,18 @@ class CD_AB_ADMIN_PAGE {
             </thead>
             <tbody id="the-list">
                 <?php do_action( 'cd_ab_admin_users_before', $cd_ab ); ?>
-            <?php 
+            <?php
             $i = 0;
             foreach ( $all_fields_ids as $field_obj => $field_data ) {
                 $group_name = '';
-                
+
                 $field_data = (array) $field_data;
-                
+
                 $current[$i] = $field_data['group_id'];
                 $prev = ($i != 0?($i - 1):0);
                 if ( $current[ $i ] != $current[ $prev ] ) {
-                    $group_name = $wpdb->get_results( 
-                        $wpdb->prepare( "SELECT name FROM {$bp->profile->table_name_groups} WHERE id = ".$current[$i] ) 
+                    $group_name = $wpdb->get_results(
+                        $wpdb->prepare( "SELECT name FROM {$bp->profile->table_name_groups} WHERE id = %d", $current[$i] )
                     );
                 }
                 if ( $group_name ) { ?>
@@ -265,7 +265,7 @@ class CD_AB_ADMIN_PAGE {
                     </td>
                     <input name="cd_ab_display[<?php echo $field_data['id']?>][type]" type="hidden" value="<?php echo $field_data['type']?>" />
                 </tr>
-            <?php 
+            <?php
             $i++;
             } ?>
             <?php do_action( 'cd_ab_admin_users_fields', $cd_ab ); ?>
@@ -280,7 +280,7 @@ class CD_AB_ADMIN_PAGE {
             <tr>
                 <td style="vertical-align:middle" colspan="2">
                     <?php _e('Do you want to display Mention and Private message links?', 'cd_ab') ?>
-                    <?php 
+                    <?php
                     if ( !bp_is_active( 'activity' ) ) {
                         echo '<br />&rarr; <span style="font-style: italic;">'.__('Activity Component is <strong>not</strong> activated. Mention link will <strong>not</strong> be visible.', 'cd_ab').'</span>';
                     }
@@ -297,7 +297,7 @@ class CD_AB_ADMIN_PAGE {
             <tr>
                 <td style="vertical-align:middle" colspan="2">
                     <?php _e('Do you want to display Add Friend link?', 'cd_ab') ?>
-                    <?php 
+                    <?php
                     if ( !bp_is_active( 'friends' ) ) {
                         echo '<br />&rarr; <span style="font-style: italic;">'.__('Friends Component is <strong>not</strong> activated. This link will <strong>not</strong> be visible.', 'cd_ab').'</span>';
                     }
@@ -308,14 +308,14 @@ class CD_AB_ADMIN_PAGE {
                     <input name="cd_ab_friend" type="radio" id="cd_ab_friend_no" value="no"<?php echo( ('no' == $cd_ab['friend'] ) ? ' checked="checked"' : ''); ?> /> <label for="cd_ab_friend_no"><?php _e('No', 'cd_ab'); ?></label>
                 </td>
             </tr>
-            
+
             </tbody>
         </table>
         </p>
     <?php
         do_action( 'cd_ab_admin_users_after', $cd_ab );
     }
-    
+
     function on_cd_ab_admin_extra($cd_ab) { ?>
         <table class="widefat link-group">
             <tr>
@@ -334,7 +334,7 @@ class CD_AB_ADMIN_PAGE {
         </table>
     <?php
     }
-    
+
     function on_cd_ab_admin_b_color($cd_ab) { ?>
         <p><?php _e('Which color of bubble border do you prefer to use?', 'cd_ab') ?></p>
         <p>
