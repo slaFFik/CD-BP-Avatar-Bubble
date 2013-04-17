@@ -9,6 +9,7 @@ function cd_ab_add_js() {
     if ( $cd_ab['access'] == 'admin' && !is_super_admin() )
         return false;
 
+    wp_enqueue_script('CD_AB_JS_COMMON', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/cd-bp-avatar-bubble.min.js', array('jquery') );
     if ( $cd_ab['action'] == 'click') {
         wp_enqueue_script('CD_AB_JS', WP_PLUGIN_URL . '/cd-bp-avatar-bubble/_inc/click.min.js', array('jquery') );
     }else{
