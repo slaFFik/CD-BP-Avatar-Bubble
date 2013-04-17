@@ -1,6 +1,4 @@
 jQuery(document).ready(function($) {
-    function getClientWidth() { return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientWidth:document.body.clientWidth;   }
-    function getClientHeight() { return document.compatMode=='CSS1Compat' && !window.opera?document.documentElement.clientHeight:document.body.clientHeight; }
 
     jQuery(function() {
         var hideDelay = 0;
@@ -31,20 +29,7 @@ jQuery(document).ready(function($) {
 
                 // hack
                 // display the container before the ajax request
-				var right = getClientWidth() - pos.left - width;
-				var boxWidth = jQuery('div#popupContainer').width();
-				if ( boxWidth < right ) {
-					container.css({
-						left: (pos.left + width) + 'px',
-						top: pos.top - 5 + 'px'
-					});
-				}else{
-					container.css({
-						left: (pos.left - boxWidth) + 'px',
-						top: pos.top - 5 + 'px'
-					})
-				}
-				container.css('display', 'block');
+                window.cd_ab_positionPopupContent(container, pos, width);
 
                 // populate the popup with a loader.gif
                 var loading = '<img src="'+ajax_image+'/ajax-loader.gif" alt="Loading" />';
@@ -68,20 +53,7 @@ jQuery(document).ready(function($) {
                         if (data.indexOf(elemID) > 0) {
                             var text = jQuery(data).html();
                             jQuery('div#popupContent').html(text);
-                                var right = getClientWidth() - pos.left - width;
-                                var boxWidth = jQuery('div#popupContainer').width();
-                                if ( boxWidth < right ) {
-                                    container.css({
-                                        left: (pos.left + width) + 'px',
-                                        top: pos.top - 5 + 'px'
-                                    });
-                                }else{
-                                    container.css({
-                                        left: (pos.left - boxWidth) + 'px',
-                                        top: pos.top - 5 + 'px'
-                                    })
-                                }
-                            container.css('display', 'block');
+                            window.cd_ab_positionPopupContent(container, pos, width);
                         }
                     }
                 });
