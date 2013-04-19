@@ -13,14 +13,7 @@ After moving your mouse pointer on a BuddyPress user avatar (or clicking it) you
 
 Ajax calls save your bandwidth and time spent on waiting. So if you want your users can easily get information about themselves on a fly - use CD BP Avatar Bubble.
 
-This plugin wouldn't exist without [Marco](http://teethgrinder.net) suggestion. His idea - my realization. Have a plugin idea or suggestion? Contact me on [twitter](http://twitter.com/slaFFik).
-
-I also want to thank my testers: [ZigZag](http://racingmag.ru/), [Альберт](http://sultan.ufalavka.ru/), [Sarah](http://wpmu.org/) and others.
-
-
 [Demo on YouTube.com](http://www.youtube.com/watch?v=cMmjt_Rpz9E "Demo video")
-
-See also working example on [OviDemo site](http://gtm.ovirium.com/)
 
 == Installation ==
 
@@ -49,6 +42,10 @@ Try to reinstall the plugin too.
 2. On a production site
 
 == Changelog ==
+
+= 2.6 (19.04.2013) =
+* Full BuddyPress 1.7 support
+* Fixing bubble positioning on small screens (props [Payton Swick](http://foolord.com/)
 
 = 2.5.1 (14.12.2012) =
 * WordPress 3.5 and BuddyPress 1.6.2 support
