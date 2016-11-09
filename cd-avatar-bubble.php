@@ -361,6 +361,9 @@ function cd_ab_get_the_userdata( $ID, $cd_ab ) {
 	$vis_levels = get_user_option( 'bp_xprofile_visibility_levels', $ID );
 
 	foreach ( $cd_ab as $field_id => $field_data ) {
+		global $field;
+		$field = xprofile_get_field( $field_id );
+
 		if ( $vis_levels && isset( $vis_levels[ $field_id ] ) ) {
 			if ( $vis_levels[ $field_id ] == 'loggedin' && ! is_user_logged_in() ) {
 				continue;
