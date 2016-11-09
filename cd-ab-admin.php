@@ -10,8 +10,10 @@ $new_cd_ab_admin = new CD_AB_ADMIN_PAGE();
 
 class CD_AB_ADMIN_PAGE {
 
-    //constructor of class, PHP4 compatible construction for backward compatibility (until WP 3.1)
-    function cd_ab_admin_page() {
+	/**
+	 * CD_AB_ADMIN_PAGE constructor.
+	 */
+    public function __construct() {
         add_filter('screen_layout_columns', array( &$this, 'on_screen_layout_columns'), 10, 3 );
         if (is_multisite()){
             add_action('network_admin_menu', array( &$this, 'on_admin_menu') );
@@ -20,7 +22,14 @@ class CD_AB_ADMIN_PAGE {
         }
     }
 
-    function on_screen_layout_columns( $columns, $screen, $obj ) {
+	/**
+	 * @param $columns
+	 * @param $screen
+	 * @param $obj
+	 *
+	 * @return mixed
+	 */
+    public function on_screen_layout_columns( $columns, $screen, $obj ) {
         $user_id = get_current_user_id();
 
         if ( !$obj->get_option( 'layout_columns' ) ) {
@@ -36,7 +45,7 @@ class CD_AB_ADMIN_PAGE {
         return $columns;
     }
 
-    function on_admin_menu() {
+	public function on_admin_menu() {
         $this->pagehook = add_submenu_page(
                             is_multisite()?'settings.php':'options-general.php',
                             __('BP Avatar Bubble', 'cd_ab'),
@@ -49,7 +58,7 @@ class CD_AB_ADMIN_PAGE {
     }
 
     //will be executed if wordpress core detects this page has to be rendered
-    function on_load_page() {
+	public function on_load_page() {
         wp_enqueue_script('common');
         wp_enqueue_script('wp-lists');
         wp_enqueue_script('postbox');
@@ -67,7 +76,7 @@ class CD_AB_ADMIN_PAGE {
     }
 
     //executed to show the plugins complete admin page
-    function on_show_page() {
+	public function on_show_page() {
         global $bp, $wpdb;
         global $screen_layout_columns;
 
@@ -154,7 +163,7 @@ class CD_AB_ADMIN_PAGE {
     <?php
     }
 
-    function on_cd_ab_admin_groups($cd_ab) {
+	public function on_cd_ab_admin_groups($cd_ab) {
         do_action( 'cd_ab_admin_groups_before', $cd_ab ); ?>
         <table class="widefat link-group">
             <tr>
@@ -194,7 +203,7 @@ class CD_AB_ADMIN_PAGE {
         do_action( 'cd_ab_admin_groups_after', $cd_ab );
     }
 
-    function on_cd_ab_admin_privacy($cd_ab) { ?>
+	public function on_cd_ab_admin_privacy($cd_ab) { ?>
         <p><?php _e('Whom would you like allow to see this avatar bubble?', 'cd_ab') ?></p>
         <p>
             <input name="cd_ab_access" type="radio" value="admin"<?php echo('admin' == $cd_ab['access'] ? ' checked="checked"' : ''); ?> /> <?php _e('Admin users only', 'cd_ab') ?><br />
@@ -205,7 +214,7 @@ class CD_AB_ADMIN_PAGE {
         do_action( 'cd_ab_admin_privacy', $cd_ab );
     }
 
-    function on_cd_ab_admin_users($cd_ab) {
+	public function on_cd_ab_admin_users($cd_ab) {
         global $bp, $wpdb;
         $all_fields_ids = $wpdb->get_results( $wpdb->prepare( "
             SELECT id, group_id, name, type
@@ -316,7 +325,7 @@ class CD_AB_ADMIN_PAGE {
         do_action( 'cd_ab_admin_users_after', $cd_ab );
     }
 
-    function on_cd_ab_admin_extra($cd_ab) { ?>
+	public function on_cd_ab_admin_extra($cd_ab) { ?>
         <table class="widefat link-group">
             <tr>
                 <td width="82%" style="vertical-align:middle;"><?php _e('What do you want to do with an avatar to show a bubble?', 'cd_ab') ?></td>
@@ -335,7 +344,7 @@ class CD_AB_ADMIN_PAGE {
     <?php
     }
 
-    function on_cd_ab_admin_b_color($cd_ab) { ?>
+	public function on_cd_ab_admin_b_color($cd_ab) { ?>
         <p><?php _e('Which color of bubble border do you prefer to use?', 'cd_ab') ?></p>
         <p>
             <input name="cd_ab_color" type="radio" value="blue"<?php echo( ('blue' == $cd_ab['color'] ) ? ' checked="checked"' : ''); ?> /> <?php _e('Light Blue', 'cd_ab'); ?><br />
@@ -353,4 +362,3 @@ class CD_AB_ADMIN_PAGE {
         <?php do_action( 'cd_ab_admin_b_color', $cd_ab );
     }
 }
-?>
