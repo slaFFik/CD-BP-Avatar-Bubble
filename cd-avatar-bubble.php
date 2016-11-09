@@ -361,9 +361,6 @@ function cd_ab_get_the_userdata( $ID, $cd_ab ) {
 	$vis_levels = get_user_option( 'bp_xprofile_visibility_levels', $ID );
 
 	foreach ( $cd_ab as $field_id => $field_data ) {
-		global $field;
-		$field = xprofile_get_field( $field_id );
-
 		if ( $vis_levels && isset( $vis_levels[ $field_id ] ) ) {
 			if ( $vis_levels[ $field_id ] == 'loggedin' && ! is_user_logged_in() ) {
 				continue;
@@ -374,38 +371,43 @@ function cd_ab_get_the_userdata( $ID, $cd_ab ) {
 			do_action( 'cd_ab_check_xprofile_fields_visibility', $ID, $vis_levels );
 		}
 
-		if ( ! empty( $field_data['name'] ) && is_numeric( $field_id ) ) {
-			$field_value = xprofile_get_field_data( $field_id, $ID );
-
-			if ( $field_value != null ) {
-				if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox' ) {
-					$field_value = bp_unserialize_profile_field( $field_value );
-				}
-				if ( $field_data['type'] == 'datebox' && $field_value != null ) {
-					if ( strpos( $field_value, '-' ) ) {
-						$field_value = bp_format_time( strtotime( $field_value ), true );
-					} else {
-						$field_value = bp_format_time( bp_unserialize_profile_field( $field_value ), true );
-					}
-				}
-				if ( $i != 1 ) {
-					$class = ' style="padding-top:6px;"';
-				}
-
-				if ( isset( $field_data['link'] ) && $field_data['link'] == 'yes' ) {
-					if ( is_array( $field_value ) ) {
-						$field_value = implode( ',', $field_value );
-					}
-					$field_link = xprofile_filter_link_profile_data( $field_value, $field_data['type'] );
-					$field_link = apply_filters( 'cd_ab_field_link', $field_link, $ID, $field_id, $field_data['type'], $field_value );
-				} else {
-					$field_link = is_array( $field_value ) ? implode( ", ", $field_value ) : $field_value;
-					$field_link = apply_filters( 'cd_ab_field_text', $field_link, $ID, $field_id, $field_data['type'], $field_value );
-				}
-				$output .= '<p class="popupLine"' . $class . '><strong>' . $field_data['name'] . '</strong>: ' . $field_link . '</p>';
-			}
-			$i ++;
+		if ( empty( $field_data['name'] ) || ! is_numeric( $field_id ) ) {
+			continue;
 		}
+
+		global $field;
+		$field = xprofile_get_field( $field_id );
+
+		$field_value = xprofile_get_field_data( $field_id, $ID );
+
+		if ( $field_value != null ) {
+			if ( $field_data['type'] == 'multiselectbox' || $field_data['type'] == 'checkbox' ) {
+				$field_value = bp_unserialize_profile_field( $field_value );
+			}
+			if ( $field_data['type'] == 'datebox' && $field_value != null ) {
+				if ( strpos( $field_value, '-' ) ) {
+					$field_value = bp_format_time( strtotime( $field_value ), true );
+				} else {
+					$field_value = bp_format_time( bp_unserialize_profile_field( $field_value ), true );
+				}
+			}
+			if ( $i != 1 ) {
+				$class = ' style="padding-top:6px;"';
+			}
+
+			if ( isset( $field_data['link'] ) && $field_data['link'] == 'yes' ) {
+				if ( is_array( $field_value ) ) {
+					$field_value = implode( ',', $field_value );
+				}
+				$field_link = xprofile_filter_link_profile_data( $field_value, $field_data['type'] );
+				$field_link = apply_filters( 'cd_ab_field_link', $field_link, $ID, $field_id, $field_data['type'], $field_value );
+			} else {
+				$field_link = is_array( $field_value ) ? implode( ", ", $field_value ) : $field_value;
+				$field_link = apply_filters( 'cd_ab_field_text', $field_link, $ID, $field_id, $field_data['type'], $field_value );
+			}
+			$output .= '<p class="popupLine"' . $class . '><strong>' . $field_data['name'] . '</strong>: ' . $field_link . '</p>';
+		}
+		$i ++;
 	}
 
 	unset( $field );
