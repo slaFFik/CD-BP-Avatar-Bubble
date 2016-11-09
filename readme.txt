@@ -1,15 +1,15 @@
 === BuddyPress Avatar Bubble ===
 Contributors: slaFFik
-Tags: buddypress, profile, ajax, avatar, admin, privacy
+Tags: buddypress, members, groups, profile, ajax, avatar, admin, privacy
 Requires at least: WordPress 3.2 and BuddyPress 1.5
-Tested up to: WordPress 3.5.1 and BuddyPress 1.7
-Stable tag: 2.6
+Tested up to: WordPress 4.6.1 and BuddyPress 2.7.2
+Stable tag: 2.6.1
 
-After moving your mouse pointer on a BuddyPress user avatar (or clicking) you will see a bubble with the defined by admin information about this user.
+After moving your mouse pointer on user/group avatar (or clicking) you will see a bubble with the defined by admin information about it.
 
 == Description ==
 
-After moving your mouse pointer on a BuddyPress user avatar (or clicking it) you will see a bubble with the defined by admin information about this user.
+After moving your mouse pointer on a BuddyPress user or group avatar (or clicking it) you will see a bubble with the defined by admin information about this user (or group).
 
 Ajax calls save your bandwidth and time spent on waiting. So if you want your users can easily get information about themselves on a fly - use CD BP Avatar Bubble.
 
@@ -19,7 +19,7 @@ Ajax calls save your bandwidth and time spent on waiting. So if you want your us
 
 1. Upload plugin folder `/cd-bp-avatar-bubble/` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Go to CD Avatar Bubble under BuddyPress menu and make customisations as needed.
+1. Go to CD Avatar Bubble under Settings menu and make customisations as needed.
 
 == Frequently Asked Questions ==
 
@@ -42,6 +42,9 @@ Try to reinstall the plugin too.
 2. On a production site
 
 == Changelog ==
+
+= 2.6.1 (09.11.2016) =
+* BuddyPress 2.7 support
 
 = 2.6 (19.04.2013) =
 * Full BuddyPress 1.7 support
