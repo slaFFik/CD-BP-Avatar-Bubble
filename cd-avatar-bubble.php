@@ -5,7 +5,7 @@ Plugin URI: https://cosydale.com/plugin-cd-avatar-bubble.html
 Description: After moving your mouse pointer on any avatar you will see a bubble with the defined by admin information about this user or group.
 Version: 2.6.1
 Author: slaFFik
-Author URI: https://cosydale.com/
+Author URI: https://ovirium.com/
 Network: true
 */
 // Exit if accessed directly
@@ -70,9 +70,9 @@ if ( ! is_admin() ) {
 function cd_ab_rel_filter( $text, $params ) {
 	$cd_ab = get_blog_option( bp_get_root_blog_id(), 'cd_ab' );
 
-	if ( $params['object'] == 'user' ) {
+	if ( $params['object'] === 'user' ) {
 		return preg_replace( '~<img (.+?) />~i', "<img $1 rel='user_{$params['item_id']}' />", $text );
-	} elseif ( $params['object'] == 'group' ) {
+	} elseif ( $params['object'] === 'group' ) {
 		if ( $cd_ab['groups']['status'] == 'on' ) {
 			return preg_replace( '~<img (.+?) />~i', "<img $1 rel='group_{$params['item_id']}' />", $text );
 		} else {
@@ -97,7 +97,7 @@ function cd_ab_rel_activity_filter( $action, $activity ) {
 	switch ( $activity->component ) {
 		case 'groups' :
 			$cd_ab = get_blog_option( bp_get_root_blog_id(), 'cd_ab' );
-			if ( $cd_ab['groups']['status'] == 'on' ) {
+			if ( $cd_ab['groups']['status'] === 'on' ) {
 				$reverse_content = strrev( $action );
 				$position        = strpos( $reverse_content, 'gmi<' );
 				preg_match( '~group-(\d++)-avatar~', $action, $match );
@@ -157,38 +157,42 @@ function cd_ab_get_add_friend_button( $ID = false, $friend_status = false ) {
 }
 
 /**
- * Display everything.
+ * Output everything.
  */
 function cd_ab_the_avatardata() {
-	$cd_ab = get_blog_option( bp_get_root_blog_id(), 'cd_ab' );
+	$cd_ab = bp_get_option( 'cd_ab' );
 	$ID    = (int) $_GET['ID'];
 	$type  = sanitize_key( $_GET['type'] );
 
+	$output = '<div id="' . $type . '_' . $ID . '">' . __( 'Nothing to display.', 'cd-bp-avatar-bubble' ) . '<div style="clear:both"></div></div>';
+
 	switch ( $type ) {
 		case 'user':
-			if ( $cd_ab['access'] == 'admin' && is_super_admin() ) {
-				cd_ab_get_the_userdata( $ID, $cd_ab );
-			} elseif ( $cd_ab['access'] == 'logged_in' && is_user_logged_in() ) {
-				cd_ab_get_the_userdata( $ID, $cd_ab );
-			} elseif ( $cd_ab['access'] == 'all' ) {
-				cd_ab_get_the_userdata( $ID, $cd_ab );
+			if ( $cd_ab['access'] === 'admin' && is_super_admin() ) {
+				$output = cd_ab_get_the_userdata( $ID, $cd_ab );
+			} elseif ( $cd_ab['access'] === 'logged_in' && is_user_logged_in() ) {
+				$output = cd_ab_get_the_userdata( $ID, $cd_ab );
+			} elseif ( $cd_ab['access'] === 'all' ) {
+				$output = cd_ab_get_the_userdata( $ID, $cd_ab );
 			} else {
-				echo $cd_ab['delay'] . '|~|<div id="user_' . $ID . '">' . __( 'You don\'t have enough rights to view user data', 'cd-bp-avatar-bubble' ) . '</div>';
+				$output = '<div id="user_' . $ID . '">' . __( 'You don\'t have enough rights to view member data.', 'cd-bp-avatar-bubble' ) . '<div style="clear:both"></div></div>';
 			}
 			break;
+
 		case 'group':
-			if ( $cd_ab['access'] == 'admin' && is_super_admin() ) {
-				cd_ab_get_the_group_data( $ID, $cd_ab );
-			} elseif ( $cd_ab['access'] == 'logged_in' && is_user_logged_in() ) {
-				cd_ab_get_the_group_data( $ID, $cd_ab );
-			} elseif ( $cd_ab['access'] == 'all' ) {
-				cd_ab_get_the_group_data( $ID, $cd_ab );
+			if ( $cd_ab['access'] === 'admin' && is_super_admin() ) {
+				$output = cd_ab_get_the_group_data( $ID, $cd_ab );
+			} elseif ( $cd_ab['access'] === 'logged_in' && is_user_logged_in() ) {
+				$output = cd_ab_get_the_group_data( $ID, $cd_ab );
+			} elseif ( $cd_ab['access'] === 'all' ) {
+				$output = cd_ab_get_the_group_data( $ID, $cd_ab );
 			} else {
-				echo $cd_ab['delay'] . '|~|<div id="group_' . $ID . '">' . __( 'You don\'t have enough rights to view group data', 'cd-bp-avatar-bubble' ) . '</div>';
+				$output = '<div id="group_' . $ID . '">' . __( 'You don\'t have enough rights to view group data.', 'cd-bp-avatar-bubble' ) . '<div style="clear:both"></div></div>';
 			}
 			break;
 	}
-	die;
+
+	die ( $output );
 }
 
 add_action( 'wp_ajax_cd_ab_the_avatardata', 'cd_ab_the_avatardata' );
@@ -197,31 +201,37 @@ add_action( 'wp_ajax_nopriv_cd_ab_the_avatardata', 'cd_ab_the_avatardata' );
 /**
  * For Groups.
  *
- * @param $ID
- * @param $cd_ab
+ * @param int $ID
+ * @param array $cd_ab
+ *
+ * @return string
  */
 function cd_ab_get_the_group_data( $ID, $cd_ab ) {
 	global $bp;
-	echo $cd_ab['delay'] . '|~|<div id="group_' . $ID . '">';
+
+	$output = '';
+
+	$output .= '<div id="group_' . $ID . '">';
 	$group = groups_get_group( array( 'group_id' => $ID ) );
 	if ( ! in_array( $group->status, $cd_ab['groups']['type'] ) ) {
-		echo __( 'You don\'t have enough rights to view data of this group', 'cd_ab' ) . '</div>';
-		die;
+		$output .= __( 'You don\'t have enough rights to view data of this group', 'cd_ab' ) . '<div style="clear:both"></div></div>';
+
+		return $output;
 	}
 
 	$group_link = $bp->root_domain . '/' . BP_GROUPS_SLUG . '/' . $group->slug;
 
 	// Group Name
 	if ( in_array( 'name', $cd_ab['groups']['data'] ) ) {
-		echo '<p class="popupLine" style="padding-top:0"><a href="' . $group_link . '">' . $group->name . '</a>';
+		$output .= '<p class="popupLine" style="padding-top:0"><a href="' . $group_link . '">' . $group->name . '</a>';
 		// Group Description (shortened)
 		if ( in_array( 'short_desc', $cd_ab['groups']['data'] ) ) {
-			echo ' &rarr; ' . bp_create_excerpt( $group->description, 10 );
+			$output .= ' &rarr; ' . bp_create_excerpt( $group->description, 10 );
 		}
-		echo '</p>';
+		$output .= '</p>';
 	} else { // and description only
 		if ( in_array( 'short_desc', $cd_ab['groups']['data'] ) ) {
-			echo '<p class="popupLine" style="padding-top:0"><a href="' . $group_link . '">#</a> ' . bp_create_excerpt( $group->description, 10 ) . '</p>';
+			$output .= '<p class="popupLine" style="padding-top:0"><a href="' . $group_link . '">#</a> ' . bp_create_excerpt( $group->description, 10 ) . '</p>';
 		}
 	}
 
@@ -229,30 +239,31 @@ function cd_ab_get_the_group_data( $ID, $cd_ab ) {
 	// Group Status display
 	$type_used = false;
 	if ( in_array( 'status', $cd_ab['groups']['data'] ) ) {
-		if ( 'public' == $group->status ) {
-			$type = __( 'Public Group', 'cd-bp-avatar-bubble' );
-		} else if ( 'hidden' == $group->status ) {
-			$type = __( 'Hidden Group', 'cd-bp-avatar-bubble' );
-		} else if ( 'private' == $group->status ) {
-			$type = __( 'Private Group', 'cd-bp-avatar-bubble' );
-		} else {
-			$type = ucwords( $group->status ) . ' ' . __( 'Group', 'cd-bp-avatar-bubble' );
+		switch ( $group->status ) {
+			case 'public':
+				$type = __( 'Public Group', 'cd-bp-avatar-bubble' );
+				break;
+			case 'hidden':
+				$type = __( 'Hidden Group', 'cd-bp-avatar-bubble' );
+				break;
+			case 'private':
+				$type = __( 'Private Group', 'cd-bp-avatar-bubble' );
+				break;
+			default:
+				$type = sprintf( __( '%s Group', 'cd-bp-avatar-bubble' ), ucwords( $group->status ) );
 		}
-		echo $type;
+		$output .= $type;
 		$type_used = true;
 	}
 
 	// Formatted number of group members
 	if ( in_array( 'members', $cd_ab['groups']['data'] ) ) {
-		if ( 1 == $group->total_member_count ) {
-			$members_data = apply_filters( 'bp_get_group_member_count', sprintf( __( '%s member', 'cd-bp-avatar-bubble' ), bp_core_number_format( $group->total_member_count ) ) );
-		} else {
-			$members_data = apply_filters( 'bp_get_group_member_count', sprintf( __( '%s members', 'cd-bp-avatar-bubble' ), bp_core_number_format( $group->total_member_count ) ) );
-		}
+		$members_data = sprintf( _n( '%s member', '%s members', 'cd-bp-avatar-bubble' ), bp_core_number_format( $group->total_member_count ) );
+
 		if ( $type_used ) {
-			echo '<span style="float:right">' . $members_data . '</span>';
+			$output .= '<span style="float:right">' . $members_data . '</span>';
 		} else {
-			echo $members_data;
+			$output .= $members_data;
 		}
 	}
 	echo '</p>';
@@ -260,18 +271,18 @@ function cd_ab_get_the_group_data( $ID, $cd_ab ) {
 	if ( in_array( 'join', $cd_ab['groups']['data'] ) ) {
 		$button = bp_get_group_join_button( $group );
 		if ( ! empty( $button ) ) {
-			echo $button;
+			$output .= $button;
 		}
 	}
 
 	// Display activity date
 	if ( in_array( 'activity_date', $cd_ab['groups']['data'] ) ) {
 		$activity_data = sprintf( __( 'Active %s', 'cd-bp-avatar-bubble' ), bp_core_time_since( $group->last_activity ) );
-		echo '<p class="popupLine">' . $activity_data;
+		$output .= '<p class="popupLine">' . $activity_data;
 		if ( in_array( 'feed_link', $cd_ab['groups']['data'] ) ) {
-			echo ' (<a href="' . $group_link . '/feed" target="_blank">' . __( 'RSS', 'cd-bp-avatar-bubble' ) . '</a>)';
+			$output .= ' (<a href="' . $group_link . '/feed" target="_blank">' . __( 'RSS', 'cd-bp-avatar-bubble' ) . '</a>)';
 		}
-		echo '</p>';
+		$output .= '</p>';
 	}
 
 	// display the forum stat text
@@ -279,37 +290,36 @@ function cd_ab_get_the_group_data( $ID, $cd_ab ) {
 		if ( bp_forums_is_installed_correctly() ) {
 			if ( in_array( 'forum_stat', $cd_ab['groups']['data'] ) ) {
 				// get all required data for count
-				$forum_id     = groups_get_groupmeta( $ID, 'forum_id' );
-				$forum_counts = bp_forums_get_forum_topicpost_count( (int) $forum_id );
-				if ( 1 == (int) $forum_counts[0]->topics ) {
-					$total_topics = sprintf( __( '%d topic', 'cd-bp-avatar-bubble' ), (int) $forum_counts[0]->topics );
-				} else {
-					$total_topics = sprintf( __( '%d topics', 'cd-bp-avatar-bubble' ), (int) $forum_counts[0]->topics );
+				$forum_counts = bp_forums_get_forum_topicpost_count( (int) groups_get_groupmeta( $ID, 'forum_id' ) );
+
+				if ( ! empty( $forum_counts ) ) {
+					$total_topics = sprintf( _n( '%s topic', '%s topics', 'cd-bp-avatar-bubble' ), bp_core_number_format( (int) $forum_counts[0]->topics ) );
+					$total_posts  = sprintf( _n( '%s post', '%s posts', 'cd-bp-avatar-bubble' ), bp_core_number_format( (int) $forum_counts[0]->posts ) );
+
+					$output .= '<p class="popupLine">' . sprintf( __( '<strong>Forum</strong>: %s and %s', 'cd-bp-avatar-bubble' ), $total_topics, $total_posts ) . '</p>';
 				}
-				if ( 1 == (int) $forum_counts[0]->posts ) {
-					$total_posts = sprintf( __( '%d post', 'cd-bp-avatar-bubble' ), (int) $forum_counts[0]->posts );
-				} else {
-					$total_posts = sprintf( __( '%d posts', 'cd-bp-avatar-bubble' ), (int) $forum_counts[0]->posts );
-				}
-				// echo the text
-				echo '<p class="popupLine">' . sprintf( __( '<strong>Forum</strong>: %s and %s', 'cd-bp-avatar-bubble' ), $total_topics, $total_posts ) . '</p>';
 			}
 		}
 	}
 
-	echo '<div style="clear:both"></div></div>';
+	$output .= '<div style="clear:both"></div></div>';
+
+	return $output;
 }
 
 /**
  * For users.
  *
- * @param $ID
- * @param $cd_ab
+ * @param int $ID
+ * @param array $cd_ab
+ *
+ * @return string
  */
 function cd_ab_get_the_userdata( $ID, $cd_ab ) {
 	global $bp;
 	$i      = 1;
 	$action = 'false';
+
 	$output = $mention = $message = $profile = $link = $class = '';
 
 	do_action( 'cd_ab_before_default' );
@@ -420,5 +430,7 @@ function cd_ab_get_the_userdata( $ID, $cd_ab ) {
 		$output = __( 'Nothing to display. Check a bit later please.', 'cd-bp-avatar-bubble' );
 	}
 
-	echo "<div id='user_$ID'>$output<div style='clear:both'></div></div>";
+	$output = "<div id='user_$ID'>{$output}<div style='clear:both'></div></div>";
+
+	return $output;
 }
