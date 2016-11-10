@@ -162,7 +162,7 @@ class CD_AB_ADMIN_PAGE {
 							}
 							?>
 							<p>
-								<input type="submit" value="<?php _e( 'Save Selected Fields', 'cd_ab' ) ?>" class="button-primary" name="saveData"/>
+								<input type="submit" value="<?php _e( 'Save Settings', 'cd-bp-avatar-bubble' ) ?>" class="button-primary" name="saveData"/>
 							</p>
 						</div>
 					</div>
