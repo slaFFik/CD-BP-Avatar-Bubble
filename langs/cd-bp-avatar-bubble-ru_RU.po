@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CD BuddyPress Avatar Bubble\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-09 14:18+0200\n"
+"POT-Creation-Date: 2016-11-10 17:34+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: slaFFik <slava.abakumov@gmail.com>\n"
 "Language-Team: slaFFik <slava.abakumov@gmail.com>\n"
@@ -14,6 +14,8 @@ msgstr ""
 "X-Poedit-Basepath: W:\\OpenServer\\domains\\ovi\\bpab\\wp-content\\plugins"
 "\\cd-bp-avatar-bubble\n"
 "X-Generator: Poedit 1.6.10\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: W:\\OpenServer\\domains\\ovi\\bpab\\wp-content"
 "\\plugins\\cd-bp-avatar-bubble\n"
 
@@ -56,8 +58,8 @@ msgid "All changes were saved. Go and check results!"
 msgstr "Все изменения сохранены. Теперь можете увидеть плагин в действии!"
 
 #: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:165
-msgid "Save Selected Fields"
-msgstr "Сохранить выбранные поля"
+msgid "Save Settings"
+msgstr "Сохранить настройки"
 
 #: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:190
 msgid "Do you want to enable avatar bubble for groups too?"
@@ -279,107 +281,106 @@ msgstr "Отменить дружбу"
 msgid "Add Friend"
 msgstr "Добавить в друзья"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:176
-msgid "You don't have enough rights to view user data"
-msgstr "У вас недостаточно прав для просмотра данных пользователя"
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:167
+msgid "Nothing to display."
+msgstr "Нечего показать."
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:187
-msgid "You don't have enough rights to view group data"
-msgstr "У вас недостаточно прав для просмотра данных группы"
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:178
+msgid "You don't have enough rights to view member data."
+msgstr "У вас недостаточно прав для просмотра данных пользователя."
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:208
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:190
+msgid "You don't have enough rights to view group data."
+msgstr "У вас недостаточно прав для просмотра данных группы."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:217
 msgid "You don't have enough rights to view data of this group"
 msgstr "У вас недостаточно прав для просмотра данных этой группы"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:233
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:244
 msgid "Public Group"
 msgstr "Открытая группа"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:235
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:247
 msgid "Hidden Group"
 msgstr "Скрытая группа"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:237
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:250
 msgid "Private Group"
 msgstr "Частная граппа"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:239
-msgid "Group"
-msgstr "Группа"
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:253
+#, php-format
+msgid "%s Group"
+msgstr "%s группа"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:248
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:261
 #, php-format
 msgid "%s member"
 msgstr "%s участник"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:250
-#, php-format
-msgid "%s members"
-msgstr "%s участников"
-
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:269
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:280
 #, php-format
 msgid "Active %s"
 msgstr "Активность: %s"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:272
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:283
 msgid "RSS"
 msgstr "RSS"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:285
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:296
 #, php-format
-msgid "%d topic"
+msgid "%s topic"
 msgstr "%d тема"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:287
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:297
 #, php-format
-msgid "%d topics"
-msgstr "%d тем"
-
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:290
-#, php-format
-msgid "%d post"
+msgid "%s post"
 msgstr "%d запись"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:292
-#, php-format
-msgid "%d posts"
-msgstr "%d записей"
-
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:295
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:299
 #, php-format
 msgid "<strong>Forum</strong>: %s and %s"
 msgstr "<strong>Форум</strong>: %s и %s"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:320
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:353
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:330
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:363
 msgid "Go to profile page"
 msgstr "Перейти на страницу профиля"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:328
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:338
 msgid "Mention this user"
 msgstr "Упомянуть этого пользователя"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:331
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:341
 msgid "Send a private message to this user"
 msgstr "Отправить личное сообщение этому пользователю"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:331
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:338
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:341
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:348
 msgid "Private Message"
 msgstr "Личное сообщение"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:335
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:345
 msgid "You should be logged in to mention this user"
 msgstr "Вам необходимо авторизоваться, чтобы упомянуть этого пользователя"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:338
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:348
 msgid "You should be logged in to send a private message"
 msgstr "Вам необходимо авторизоваться, чтобы отправлять личные сообщения"
 
-#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:420
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:430
 msgid "Nothing to display. Check a bit later please."
 msgstr "Нечего отображать. Проверьте информацию позже."
+
+#~ msgid "%s members"
+#~ msgstr "%s участников"
+
+#~ msgid "%d topics"
+#~ msgstr "%d тем"
+
+#~ msgid "%d posts"
+#~ msgstr "%d записей"
 
 #~ msgid "Fields To Show In A Bubble"
 #~ msgstr "Отображаемые в окне поля"

@@ -3,7 +3,7 @@ Contributors: slaFFik
 Tags: buddypress, members, groups, profile, ajax, avatar, admin, privacy
 Requires at least: WordPress 3.2 and BuddyPress 1.5
 Tested up to: WordPress 4.6.1 and BuddyPress 2.7.2
-Stable tag: 2.7
+Stable tag: 2.7.1
 
 After moving your mouse pointer on user/group avatar (or clicking) you will see a bubble with the defined by admin information about it.
 
@@ -42,6 +42,9 @@ Try to reinstall the plugin too.
 2. On a production site
 
 == Changelog ==
+
+= 2.7.1 (10.11.2016) =
+* Added Slovak translation, props @kypo
 
 = 2.7 (10.11.2016) =
 * Drastically simplified javascript
