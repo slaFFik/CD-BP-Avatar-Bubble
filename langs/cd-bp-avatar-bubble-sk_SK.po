@@ -1,0 +1,380 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CD Avatar Bubble\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-10 16:11+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: kypo <kypo46@gmail.com>\n"
+"Language-Team: slaFFik <slava.abakumov@gmail.com>\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: W:/_server/home/ovi/ab/wp-content/plugins/cd-bp-avatar-"
+"bubble\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-SearchPath-0: W:/_server/home/ovi/ab/wp-content/plugins/cd-bp-"
+"avatar-bubble\n"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:49
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:50
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:111
+msgid "BP Avatar Bubble"
+msgstr "BP Avatar Bubble"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:68
+msgid "Privacy Options"
+msgstr "Osobné údaje voľby"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:72
+msgid "Border Color"
+msgstr "Farba okraja"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:77
+msgid "Users Avatars Options"
+msgstr "Možnosti užívateľských Avatarov"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:82
+msgid "Groups Avatars Options"
+msgstr "Možnosti Avatarov skupín"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:83
+msgid "BP Groups Component is not activated"
+msgstr "Komponent BP Skupiny nie je aktivovaný"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:85
+msgid "Extra Options"
+msgstr "Ďalšie možnosti"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:112
+msgid "Interactive Avatars"
+msgstr "Interaktívne Avatary"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:140
+msgid "All changes were saved. Go and check results!"
+msgstr "Všetky zmeny boli uložené. Skontroluj výsledky!"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:165
+msgid "Save Selected Fields"
+msgstr "Ulož označené polia"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:190
+msgid "Do you want to enable avatar bubble for groups too?"
+msgstr "Chceš povoliť Avattar bubble aj pre skupiny?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:193
+msgid "Enable"
+msgstr "Povoliť"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:196
+msgid "Disable"
+msgstr "Zakázať"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:201
+msgid "For what types of groups this bubble should appear?"
+msgstr "Pre aké typy skupín by sa bubble mal objaviť?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:205
+msgid "For public groups"
+msgstr "Pre verejné skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:208
+msgid "For private groups"
+msgstr "Pre súkromné skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:211
+msgid "For hidden groups"
+msgstr "Pre skryté skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:216
+msgid "Please select below fields you want to show in a bubble:"
+msgstr "Vyber polia ktoré chceš zobrazovať v bubline:"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:220
+msgid "Group name"
+msgstr "Názov skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:223
+msgid "Short description"
+msgstr "Krátky popis"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:226
+msgid "Group status"
+msgstr "Skupinový status"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:229
+msgid "Number of members"
+msgstr "Počet členov"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:232
+msgid "Join/Leave group links"
+msgstr "Pridať sa / Opustiť skupinu"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:235
+msgid "Latest activity date"
+msgstr "Dátum poslednej aktivity"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:238
+msgid "Feed link (displayed if latest activity is checked)"
+msgstr "Odkaz na Feed (zobrazuje sa, ak je zaškrtnutá najnovšia aktivita)"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:241
+msgid "Forum statistics (number of topics and posts)"
+msgstr "Štatistika fóra (počet tém a príspevkov)"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:252
+msgid "Whom would you like allow to see this avatar bubble?"
+msgstr "Komu chceš povoliť vidieť tento plugin Avatar Bubble?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:255
+msgid "Admin users only"
+msgstr "Iba Administrátori"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:258
+msgid "Logged in users only (including admins)"
+msgstr "Iba prihlásení užívatelia (vrátane Admins)"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:261
+msgid "All visitors (even not logged in)"
+msgstr "Všetci užívatelia (ešte neprihlásení)"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:296
+msgid "Check here all fields from users profiles you want to show in a bubble"
+msgstr ""
+"Zaškrtni všetky polia užívateľského profilu, ktoré chceš zobrazovať v bubline"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:299
+msgid "As a link?"
+msgstr "Ako odkaz?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:347
+msgid ""
+"<strong>Remember</strong>: the more you choose, the more time needed to "
+"process the request."
+msgstr ""
+"<strong>Pamätaj</strong>: Čím viac polí vyberieš, tým dlhší čas bude "
+"potrebný na spracovanie požiadavky."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:350
+msgid "All"
+msgstr "Všetko"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:351
+msgid "None"
+msgstr "Žiadne"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:357
+msgid "Do you want to display Mention and Private message links?"
+msgstr "CHceš zobrazovať odkazy na zmienky a súkromné správy?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:360
+msgid ""
+"Activity Component is <strong>not</strong> activated. Mention link will "
+"<strong>not</strong> be visible."
+msgstr ""
+"Komponent Activity <strong>nie je</strong> aktivovaný. Odkaz na zmienku "
+"<strong>nebude</strong> viditeľný."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:363
+msgid ""
+"Messages Component is <strong>not</strong> activated. New Message link will "
+"<strong>not</strong> be visible."
+msgstr ""
+"Komponent súkromných správ <strong>nie je</strong> aktivovaný. Odkaz na "
+"správy <strong>nebude</strong> viditeľný."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:369
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:387
+msgid "Yes"
+msgstr "Áno"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:372
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:390
+msgid "No"
+msgstr "Nie"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:377
+msgid "Do you want to display Add Friend link?"
+msgstr "Chceš zobrazovať odkaz Pridaj priateľa?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:380
+msgid ""
+"Friends Component is <strong>not</strong> activated. This link will "
+"<strong>not</strong> be visible."
+msgstr ""
+"Komponent Priatelia <strong>nie je</strong> aktivovaný. Tento odkazl "
+"<strong>nebude</strong> viditeľný."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:405
+msgid "What do you want to do with an avatar to show a bubble?"
+msgstr "Po akej akcii chceš aby sa zobrazovala avatar bublina?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:408
+msgid "Click it"
+msgstr "Po kliknutí"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:411
+msgid "Hover it"
+msgstr "Po prejdení myšou"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:415
+msgid ""
+"How many <strong>seconds</strong> do you want bubble to wait before showing "
+"itself (Delay Time)?<br /><br /><strong>Remember:</strong> This number will "
+"be added to time needed to process the request (abt. 1 second)."
+msgstr ""
+"Koľko <strong>sekúnd</strong> sa má čakať pred zobrazením avatar bubliny "
+"(Delay Time)?<br /><br /><strong>Pamätaj:</strong> Tento čas bude pridaný k "
+"času potrebnému na spracovanie požiadavky (napr. 1 sekunda)."
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:426
+msgid "Which color of bubble border do you prefer to use?"
+msgstr "Akú farbu okraja bubliny preferuješ?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:429
+msgid "Light Blue"
+msgstr "Svetlo modrá"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:432
+msgid "Dark Green"
+msgstr "Tmavo zelená"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:435
+msgid "Light Red"
+msgstr "Svetlo červená"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:438
+msgid "Just Black"
+msgstr "Čierna"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:441
+msgid "Simply Grey"
+msgstr "Šedá"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:444
+msgid "Do you want to use images or CSS3 borders+shadows for corners?"
+msgstr "Chceš používať obrázky alebo CSS3 na okraj a tieň rohov?"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:447
+msgid "Images"
+msgstr "Obrázky"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-ab-admin.php:450
+msgid "CSS 3 borders+shadows"
+msgstr "CSS3 okraje a tiene"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:149
+msgid "Friendship Requested"
+msgstr "Žiadosť o priateľstvo odoslaná"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:151
+msgid "Cancel Friendship"
+msgstr "Zruš priateľstvo"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:153
+msgid "Add Friend"
+msgstr "Pridaj priateľa"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:176
+msgid "You don't have enough rights to view user data"
+msgstr "Nemáš práva na zobrazenie užívateľských dát"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:187
+msgid "You don't have enough rights to view group data"
+msgstr "Nemáš práva na zobrazenie údajov skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:208
+msgid "You don't have enough rights to view data of this group"
+msgstr "Nemáš práva na zobrazenie údajov tejto skupiny"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:233
+msgid "Public Group"
+msgstr "Verejná skupina"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:235
+msgid "Hidden Group"
+msgstr "Skrytá skupina"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:237
+msgid "Private Group"
+msgstr "Súkromná skupina"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:239
+msgid "Group"
+msgstr "Skupina"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:248
+#, php-format
+msgid "%s member"
+msgstr "%s člen"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:250
+#, php-format
+msgid "%s members"
+msgstr "%s členov"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:269
+#, php-format
+msgid "Active %s"
+msgstr "Active %s"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:272
+msgid "RSS"
+msgstr "RSS"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:285
+#, php-format
+msgid "%d topic"
+msgstr "%d téma"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:287
+#, php-format
+msgid "%d topics"
+msgstr "%d tém"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:290
+#, php-format
+msgid "%d post"
+msgstr "%d príspevok"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:292
+#, php-format
+msgid "%d posts"
+msgstr "%d príspevkov"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:295
+#, php-format
+msgid "<strong>Forum</strong>: %s and %s"
+msgstr "<strong>Fórum</strong>: %s a %s"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:320
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:353
+msgid "Go to profile page"
+msgstr "Choď na stránku profilu"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:328
+msgid "Mention this user"
+msgstr "Zmieniť sa o tomto užívateľovi"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:331
+msgid "Send a private message to this user"
+msgstr "Poslať súkromnú správu tomuto užívateľovi"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:331
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:338
+msgid "Private Message"
+msgstr "Súkromná správa"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:335
+msgid "You should be logged in to mention this user"
+msgstr "Musíš byť prihlásený aby si sa mohol zmieniť o tomto užívateľovi"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:338
+msgid "You should be logged in to send a private message"
+msgstr "Musič byť prihlásený na posielanie správ"
+
+#: W:\OpenServer\domains\ovi\bpab\wp-content\plugins\cd-bp-avatar-bubble/cd-avatar-bubble.php:420
+msgid "Nothing to display. Check a bit later please."
+msgstr "Nič na zobrazenie, skontroluj neskôr."
